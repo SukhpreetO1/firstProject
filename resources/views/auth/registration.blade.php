@@ -67,7 +67,7 @@
                                 <div class="form-group d-flex">
                                     <div class="form-group mb-3 me-4">
                                         <input type="text" placeholder="First Name" id="first_name" class="form-control"
-                                            name="nafirst_nameme" autofocus>
+                                            name="first_name" autofocus>
                                         @if ($errors->has('first_name'))
                                             <span class="text-danger">{{ $errors->first('first_name') }}</span>
                                         @endif
@@ -101,11 +101,11 @@
                                 </div>
 
                                 <div class="form-group d-flex">
-                                    <div class="form-group mb-3 me-4">
-                                        <select class="form-select" aria-label="Default select example" style="width:15.25rem">
+                                    <div class="form-group mb-3 me-4" name="gender" id="gender">
+                                        <select class="form-select" aria-label="Default select example" style="width:15.25rem" name="gender" id="gender">
                                             <option selected>Gender</option>
-                                            <option value="1">Male</option>
-                                            <option value="2">Female</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
                                         </select>
                                         @if ($errors->has('gender'))
                                             <span class="text-danger">{{ $errors->first('gender') }}</span>
