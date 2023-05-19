@@ -67,7 +67,7 @@
                                 <div class="form-group d-flex">
                                     <div class="form-group mb-3 me-4">
                                         <input type="text" placeholder="First Name" id="first_name" class="form-control"
-                                            name="nafirst_nameme" required autofocus>
+                                            name="nafirst_nameme" autofocus>
                                         @if ($errors->has('first_name'))
                                             <span class="text-danger">{{ $errors->first('first_name') }}</span>
                                         @endif
@@ -75,17 +75,17 @@
 
                                     <div class="form-group mb-3">
                                         <input type="text" placeholder="Last Name" id="last_name" class="form-control"
-                                            name="last_name" required autofocus>
+                                            name="last_name" autofocus>
                                         @if ($errors->has('last_name'))
-                                            <span class="text-danger">{{ $errors->last('last_name') }}</span>
+                                            <span class="text-danger">{{ $errors->first('last_name') }}</span>
                                         @endif
                                     </div>
                                 </div>
 
                                 <div class="form-group d-flex">
                                     <div class="form-group mb-3 me-4">
-                                        <input type="text" placeholder="Email" id="email" class="form-control"
-                                            name="email" required autofocus>
+                                        <input type="email" placeholder="Email" id="email" class="form-control"
+                                            name="email" autofocus>
                                         @if ($errors->has('email'))
                                             <span class="text-danger">{{ $errors->first('email') }}</span>
                                         @endif
@@ -93,7 +93,7 @@
 
                                     <div class="form-group mb-3">
                                         <input type="text" placeholder="Username" id="userName" class="form-control"
-                                            name="userName" required autofocus>
+                                            name="userName" autofocus>
                                         @if ($errors->has('userName'))
                                             <span class="text-danger">{{ $errors->first('userName') }}</span>
                                         @endif
@@ -114,7 +114,7 @@
 
                                     <div class="form-group mb-3">
                                         <input type="text" placeholder="Phone Number" id="phone_number"
-                                            class="form-control" name="phone_number" required autofocus>
+                                            class="form-control" name="phone_number" autofocus maxlength="10">
                                         @if ($errors->has('phone_number'))
                                             <span class="text-danger">{{ $errors->first('phone_number') }}</span>
                                         @endif
@@ -124,7 +124,7 @@
                                 <div class="form-group d-flex">
                                     <div class="form-group mb-3 me-4">
                                         <input type="password" placeholder="Password" id="password" class="form-control"
-                                            name="password" required>
+                                            name="password">
                                         @if ($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
@@ -132,7 +132,7 @@
 
                                     <div class="form-group mb-3">
                                         <input type="password" placeholder="Confirm Password" id="password" class="form-control"
-                                            name="password" required>
+                                            name="password">
                                         @if ($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
