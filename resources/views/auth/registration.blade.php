@@ -71,6 +71,7 @@
                                         @if ($errors->has('first_name'))
                                             <span class="text-danger">{{ $errors->first('first_name') }}</span>
                                         @endif
+
                                     </div>
 
                                     <div class="form-group mb-3">
@@ -81,6 +82,7 @@
                                         @endif
                                     </div>
                                 </div>
+
 
                                 <div class="form-group d-flex">
                                     <div class="form-group mb-3 me-4">
