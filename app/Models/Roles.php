@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Roles extends Model
 {
-    public function u  ser()
+    public function user()
     {
         return $this->belongsTo(User::class, 'foreign_key');
     }
