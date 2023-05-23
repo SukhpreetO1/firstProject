@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
-
 class AuthController extends Controller
 {
     public function index()
@@ -28,15 +27,21 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                ->withSuccess('Signed in');
+        
+        if (auth()->user()->is_admin == 1) {
+            return redirect('dashboard');
+        }else{
+            return view('theme.content');
+        }
+            // return redirect()->intended('dashboard')
+            //     ->withSuccess('Signed in');
         }
 
         return redirect("login")->withSuccess('Login details are not valid');
     }
 
     public function registration()
-    {
+    {        
         return view('auth.registration');
     }
 
@@ -45,9 +50,9 @@ class AuthController extends Controller
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'userName' => 'required',
-            'gender' => 'required',
+            'gender' => 'rerequestquired',
             'phone_number' => 'required',
             'password' => 'required|min:6',
         ]);
@@ -74,7 +79,7 @@ class AuthController extends Controller
     public function dashboard()
     {
         if (Auth::check()) {
-            return view('theme.content');
+            return view('theme.content-2');
         }
 
         return redirect("login")->withSuccess('You are not allowed to access');

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +34,6 @@ Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login
 Route::get('registration', [AuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom'); 
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
+
+
+// Route::get('home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
