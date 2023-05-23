@@ -48,10 +48,6 @@
         </div>
     </main>
 @endsection --}}
-
-
-
-
 @extends('auth.dashboard')
 
 @section('content')

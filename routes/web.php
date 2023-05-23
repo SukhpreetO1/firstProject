@@ -19,12 +19,12 @@ Route::get('/', function () {
 });
 
 Route::get('/theme', function () {
-    return view('theme.content');
+    return view('theme.content');   
 });
 
-Route::get('/content-2', function () {
-    return view('theme.content-2');
-});
+// Route::get('/content-2', function () {
+//     return view('theme.content-2');
+// });
 
 Route::get('dashboard', [AuthController::class, 'dashboard']);
 Route::get('login', [AuthController::class, 'index'])->name('login');
@@ -32,3 +32,5 @@ Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login
 Route::get('registration', [AuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom'); 
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
+
+
