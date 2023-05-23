@@ -48,6 +48,8 @@
         </div>
     </main>
 @endsection --}}
+
+
 @extends('auth.dashboard')
 
 @section('content')
@@ -100,7 +102,8 @@
 
                                 <div class="form-group d-flex">
                                     <div class="form-group mb-3 me-4" name="gender" id="gender">
-                                        <select class="form-select" aria-label="Default select example" style="width:15.25rem" name="gender" id="gender">
+                                        <select class="form-select" aria-label="Default select example"
+                                            style="width:15.25rem" name="gender" id="gender">
                                             <option selected>Gender</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
@@ -112,7 +115,9 @@
 
                                     <div class="form-group mb-3">
                                         <input type="text" placeholder="Phone Number" id="phone_number"
-                                            class="form-control" name="phone_number" autofocus maxlength="10">
+                                            class="form-control" name="phone_number" autofocus maxlength="10"
+                                            value="{{ old('phone_number') }}">
+                                        
                                         @if ($errors->has('phone_number'))
                                             <span class="text-danger">{{ $errors->first('phone_number') }}</span>
                                         @endif
@@ -129,8 +134,8 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <input type="password" placeholder="Confirm Password" id="password" class="form-control"
-                                            name="password">
+                                        <input type="password" placeholder="Confirm Password" id="password"
+                                            class="form-control" name="password">
                                         @if ($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
