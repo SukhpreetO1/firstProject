@@ -31,7 +31,7 @@ class AuthController extends Controller
             } else if (auth()->user()->role_id == 2) {
                 return view('theme.content', ['name' => 'User']);
             } else {
-                return 'alert("Login credentials is wrong")';
+                return "Login credentials is wrong";
             }
         }
 
