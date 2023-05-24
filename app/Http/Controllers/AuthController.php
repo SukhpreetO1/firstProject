@@ -31,11 +31,10 @@ class AuthController extends Controller
             } else if (auth()->user()->role_id == 2) {
                 return view('theme.content');
             } else {
-                return redirect('show_alert');
+                return ('show_alert_for_invalid');
             }
         }
-
-        return redirect("login")->withSuccess('Login details are not valid');
+        return redirect("login");
     }
 
     public function registration()
@@ -56,9 +55,9 @@ class AuthController extends Controller
         ]);
 
         $data = $request->all();
-        $check = $this->create($data);
+        // $check = $this->create($data);
 
-        return redirect("dashboard")->withSuccess('You have signed-in');
+        return redirect("dashboard")->with('You have signed-in');
     }
 
     public function create(array $data)
@@ -79,14 +78,13 @@ class AuthController extends Controller
         if (Auth::check()) {
             return view('theme.content-2');
         }
-
         return redirect("login")->withSuccess('You are not allowed to access');
     }
 
     public function signOut()
     {
         Session::flush();
-        Auth::lshow_alertogout();
+        Auth::logout();
 
         return Redirect('login');
     }
@@ -96,6 +94,6 @@ class AuthController extends Controller
 
 
 <!-- Javascript for invalid password -->
-<script type='text/javascript'>
-    $show_alert = alert("Invalid credentials")
-</script>
+<!-- <script type='text/javascript'>
+    $show_alert_for_invalid = alert("Invalid credentials")
+</script> -->
