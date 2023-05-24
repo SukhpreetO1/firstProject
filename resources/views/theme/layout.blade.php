@@ -18,7 +18,12 @@
 
     @include('theme.header')
 
-    @include('theme.sidebar')
+    @if (auth()->user()->role_id == 1)
+        @include('theme.admin_sidebar')
+    @else {
+        @include('theme.sidebar')
+    }
+    @endif
 
     <div style="margin-left: 21%">
         @yield('content')
@@ -26,7 +31,7 @@
 
     @include('theme.footer')
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
