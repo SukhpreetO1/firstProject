@@ -27,14 +27,14 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             if (auth()->user()->role_id == 1) {
-                return redirect('dashboard');
+                return redirect('dashboard')->with('success_message', 'Admin Login Successfully');
             } else if (auth()->user()->role_id == 2) {
-                return view('theme.content');
+                return view('theme.content')->with('user_success_message', 'Login Successfully');
             } else {
                 return ('show_alert_for_invalid');
             }
         }
-        return redirect("login");
+        return redirect("login")->with('error_message', 'Invalid credentials');
     }
 
     public function registration()

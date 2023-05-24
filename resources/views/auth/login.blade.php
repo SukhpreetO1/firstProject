@@ -8,11 +8,17 @@
                     <div class="card">
                         <h3 class="card-header text-center">Login</h3>
                         <div class="card-body">
+
+                            @if (session('error_authentication'))
+                                <div class="alert alert-danger">{{ session('error_authentication') }}</div>
+                            @endif
+
+
                             <form method="POST" action="{{ route('login.custom') }}">
-                                @error('error')
-                                
-                                
-                                @enderror
+
+                                @if (session('error_message'))
+                                    <div class="alert alert-danger">{{ session('error_message') }}</div>
+                                @endif
 
                                 @csrf
                                 <div class="form-group mb-3">
@@ -31,7 +37,7 @@
                                     @endif
                                 </div>
                                 <div class="d-grid mx-auto">
-                                    <button type="submit" class="btn btn-dark btn-block">Signin</button>
+                                    <button type="submit" class="btn btn-dark btn-block">Login</button>
                                 </div>
 
                                 <div class="sign-up mt-2 mb-2">

@@ -20,6 +20,6 @@ class Admin_login
             return $next($request);
         }
 
-        return redirect('login')->withErrors('error', "You don't have admin access.");
+        return redirect('login')->with('error_authentication', "You don't have admin access.");
     }
 }
