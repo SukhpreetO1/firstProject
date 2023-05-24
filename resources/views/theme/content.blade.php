@@ -5,6 +5,15 @@
         <div class="alert alert-success">{{ session('user_success_message') }}</div>
     @endif
 
+    {{-- show login error authentication alert --}}
+    {{-- @if (session('error_authentication'))
+        <div class="alert alert-danger">{{ session('error_authentication') }}</div>
+    @endif --}}
+
+    {{-- @if ('error_authentication' == true)
+        <div class="alert alert-danger">{{ session('error_authentication') }}</div>      
+    @endif --}}
+
     <section class="user_middlecontent">
         <div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, quia necessitatibus doloribus, atque at tempore

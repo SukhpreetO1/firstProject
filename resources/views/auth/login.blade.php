@@ -13,11 +13,6 @@
                             <div class="alert alert-success">{{ session('logout_message') }}</div>
                         @endif
 
-                        {{-- show login error authentication alert --}}
-                        @if (session('error_authentication'))
-                            <div class="alert alert-danger">{{ session('error_authentication') }}</div>
-                        @endif
-
                         <div class="card-body">
                             <form method="POST" action="{{ route('login.custom') }}">
 
