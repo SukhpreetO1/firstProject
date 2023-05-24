@@ -4,7 +4,7 @@
     <a href="index3.html" class="brand-link">
         <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
-        <span class="brand-text font-weight-light">User</span>
+        <span class="brand-text font-weight-light">{{$name}}</span>
     </a>
 
     <!-- Sidebar -->
@@ -15,7 +15,7 @@
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE8mfMQaxYML8eKPMG0OmD4Lw9CyElV6c9USr3J9i33Q&s" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">User</a>
+                <a href="#" class="d-block">{{$name}}</a>
             </div>
         </div>
 

@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-// use Hash;
-// use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
+use Roles;
 
 class AuthController extends Controller
 {
@@ -27,21 +26,20 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-        
-        if (auth()->user()->is_admin == 1) {
-            return redirect('dashboard');
-        }else{
-            return view('theme.content');
-        }
-            // return redirect()->intended('dashboard')
-            //     ->withSuccess('Signed in');
+            if (auth()->user()->role_id == 1) {
+                return redirect('dashboard');
+            } else if (auth()->user()->role_id == 2) {
+                return view('theme.content', ['name' => 'User']);
+            } else {
+                return 'alert("Login credentials is wrong")';
+            }
         }
 
         return redirect("login")->withSuccess('Login details are not valid');
     }
 
     public function registration()
-    {        
+    {
         return view('auth.registration');
     }
 
@@ -79,7 +77,7 @@ class AuthController extends Controller
     public function dashboard()
     {
         if (Auth::check()) {
-            return view('theme.content-2');
+            return view('theme.content-2', ['name' => 'Admin']);
         }
 
         return redirect("login")->withSuccess('You are not allowed to access');
