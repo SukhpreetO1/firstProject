@@ -5,10 +5,15 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <div class="card">  
+                    <div class="card">
                         <h3 class="card-header text-center">Login</h3>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('login.custom') }}"> 
+                            <form method="POST" action="{{ route('login.custom') }}">
+                                @error('error')
+                                
+                                
+                                @enderror
+
                                 @csrf
                                 <div class="form-group mb-3">
                                     <input type="text" placeholder="Email" id="email" class="form-control"
@@ -29,7 +34,7 @@
                                     <button type="submit" class="btn btn-dark btn-block">Signin</button>
                                 </div>
 
-                                <div class="sign-up mt-2 mb-2" >
+                                <div class="sign-up mt-2 mb-2">
                                     <p>Not Register, then click <a href="./registration">here</a> to sign up.</p>
                                 </div>
                             </form>

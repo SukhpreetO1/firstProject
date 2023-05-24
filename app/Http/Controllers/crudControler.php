@@ -15,7 +15,7 @@ class crudControler extends Controller
     public function index()
     { 
         $users = User::latest()->paginate(5);
-        
+
         $users = User::orderBy('id', 'asc')->get(); 
       
         return view('crud.index',compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
@@ -102,13 +102,17 @@ class crudControler extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  int  $id
      * @param  \App\Models\User  $users
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $users)
     {
+        $users = User::findOrFail($id);
+
         $users->delete();
        
-        return redirect()->route('crud.index')->with('success','User deleted successfully');
+        // return redirect()->route('crud.index')->with('success','User deleted successfully');.
+        return redirect('crud.index')->with('success', 'Data is successfully deleted');
     }
 }
