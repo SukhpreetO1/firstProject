@@ -32,7 +32,7 @@ class AuthController extends Controller
             } else if (auth()->user()->role_id == 2) {
                 return view('theme.content');
             } else {
-                return ('show_alert_for_invalid');
+                return ('Invalid credentials');
             }
         }
         return redirect("login")->with('error_message', 'Invalid credentials');
@@ -82,7 +82,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             return view('theme.content-2');
         }
-        return redirect("login")->withSuccess('You are not allowed to access');
+        return redirect("login");
     }
 
     // for logout

@@ -7,7 +7,7 @@
 
     <section class="admin_middlesection">
         <div>
-            askknbcdyysbfasdasdasd
+            This is admin page.
         </div>
     </section>
 @endsection
