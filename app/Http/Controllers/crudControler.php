@@ -13,8 +13,10 @@ class crudControler extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         $users = User::latest()->paginate(5);
+        
+        $users = User::orderBy('id', 'asc')->get(); 
       
         return view('crud.index',compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
     }

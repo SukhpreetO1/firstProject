@@ -6,9 +6,9 @@
             <div class="pull-left">
                 <h2>CRUD Operation</h2>
             </div>
-            {{-- <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('register.custom') }}"> Create New User</a>
-            </div> --}}
+            <div class="pull-right">
+                <a class="btn btn-primary" href="{{ route('register-user') }}"> Create New User</a>
+            </div>
         </div>
     </div>
 
@@ -29,7 +29,6 @@
             <th>Phone Number</th>
             <th width="280px">Action</th>
         </tr>
-
         @foreach ($users as $user)
             <tr>
                 <td>{{ ++$i }}</td>
@@ -42,7 +41,7 @@
                 <td>
                     <form action="" method="POST">
 
-                        <a class="btn btn-info" href="">Show</a>
+                        <a class="btn btn-info" indexhref="">Show</a>
 
                         <a class="btn btn-primary" href="">Edit</a>
 
