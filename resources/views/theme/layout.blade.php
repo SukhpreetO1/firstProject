@@ -20,14 +20,6 @@
 
     @include('theme.sidebar')
 
-    @if (session('success_message'))
-        <div class="alert alert-success">{{ session('success_message') }}</div>
-    @endif
-
-    {{-- @if (session('user_success_message'))
-    <div class="alert alert-success">{{ session('user_success_message') }}</div> --}}
-
-
     <div style="margin-left: 21%">
         @yield('content')
     </div>
