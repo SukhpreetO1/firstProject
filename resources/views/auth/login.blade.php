@@ -7,13 +7,18 @@
                 <div class="col-md-4">
                     <div class="card">
                         <h3 class="card-header text-center">Login</h3>
+                        
+                        {{-- show logout alert --}}
+                        @if (session('logout_message'))
+                            <div class="alert alert-success">{{ session('logout_message') }}</div>
+                        @endif
+
+                        {{-- show login error authentication alert --}}
+                        @if (session('error_authentication'))
+                            <div class="alert alert-danger">{{ session('error_authentication') }}</div>
+                        @endif
+
                         <div class="card-body">
-
-                            @if (session('error_authentication'))
-                                <div class="alert alert-danger">{{ session('error_authentication') }}</div>
-                            @endif
-
-
                             <form method="POST" action="{{ route('login.custom') }}">
 
                                 @if (session('error_message'))
