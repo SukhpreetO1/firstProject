@@ -29,9 +29,9 @@ class AuthController extends Controller
             if (auth()->user()->role_id == 1) {
                 return redirect('dashboard');
             } else if (auth()->user()->role_id == 2) {
-                return view('theme.content', ['name' => 'User']);
+                return view('theme.content');
             } else {
-                return "Login credentials is wrong";
+                return redirect('show_alert');
             }
         }
 
@@ -50,7 +50,7 @@ class AuthController extends Controller
             'last_name' => 'required',
             'email' => 'required|email',
             'userName' => 'required',
-            'gender' => 'rerequestquired',
+            'gender' => 'required',
             'phone_number' => 'required',
             'password' => 'required|min:6',
         ]);
@@ -77,7 +77,7 @@ class AuthController extends Controller
     public function dashboard()
     {
         if (Auth::check()) {
-            return view('theme.content-2', ['name' => 'Admin']);
+            return view('theme.content-2');
         }
 
         return redirect("login")->withSuccess('You are not allowed to access');
@@ -86,8 +86,16 @@ class AuthController extends Controller
     public function signOut()
     {
         Session::flush();
-        Auth::logout();
+        Auth::lshow_alertogout();
 
         return Redirect('login');
     }
 }
+?>
+
+
+
+<!-- Javascript for invalid password -->
+<script type='text/javascript'>
+    $show_alert = alert("Invalid credentials")
+</script>
