@@ -12,6 +12,7 @@ use Roles;
 
 class AuthController extends Controller
 {
+    // for login
     public function index()
     {
         return view('auth.login');
@@ -29,7 +30,7 @@ class AuthController extends Controller
             if (auth()->user()->role_id == 1) {
                 return redirect('dashboard')->with('success_message', 'Admin Login Successfully');
             } else if (auth()->user()->role_id == 2) {
-                return view('theme.content')->with('user_success_message', 'Login Successfully');
+                return view('theme.content');
             } else {
                 return ('show_alert_for_invalid');
             }
@@ -37,6 +38,7 @@ class AuthController extends Controller
         return redirect("login")->with('error_message', 'Invalid credentials');
     }
 
+    // to registrate a new user
     public function registration()
     {
         return view('auth.registration');
@@ -60,6 +62,7 @@ class AuthController extends Controller
         return redirect("dashboard")->with('You have signed-in');
     }
 
+    // to create a new user
     public function create(array $data)
     {
         return User::create([
@@ -73,6 +76,7 @@ class AuthController extends Controller
         ]);
     }
 
+    // For admin dashboard
     public function dashboard()
     {
         if (Auth::check()) {
@@ -81,6 +85,7 @@ class AuthController extends Controller
         return redirect("login")->withSuccess('You are not allowed to access');
     }
 
+    // for logout
     public function signOut()
     {
         Session::flush();
@@ -90,10 +95,3 @@ class AuthController extends Controller
     }
 }
 ?>
-
-
-
-<!-- Javascript for invalid password -->
-<!-- <script type='text/javascript'>
-    $show_alert_for_invalid = alert("Invalid credentials")
-</script> -->
