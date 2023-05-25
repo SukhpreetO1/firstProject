@@ -57,14 +57,15 @@ class AuthController extends Controller
         ]);
 
         $data = $request->all();
-        // $check = $this->create($data);
+        $check = User::create($data);
 
         return redirect("dashboard")->with('You have signed-in');
     }
 
     // to create a new user
     public function create(array $data)
-    {
+    
+    {   
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
