@@ -1,7 +1,7 @@
 @if ($paginator->hasPages())
     <ul class="pager" style="list-style: none; display: flex; ">
         @if ($paginator->onFirstPage())
-            <li class="disabled"><span>← Previous</span></li>
+            <li class="disabled"><span><- Previous</span></li>
         @else
             <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">← Previous</a></li>
         @endif
