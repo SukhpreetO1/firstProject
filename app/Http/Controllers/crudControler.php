@@ -13,14 +13,12 @@ class crudControler extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
-        $users = User::latest()->paginate(5);
+    {
+        $users = User::orderBy('id', 'asc')->paginate(10);
 
-        $users = User::orderBy('id', 'asc')->get(); 
-      
-        return view('crud.index',compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('crud.index', compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
-  
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +28,7 @@ class crudControler extends Controller
     {
         return view('crud.create');
     }
-  
+
     /**
      * Store a newly created resource in storage.
      *
@@ -48,23 +46,23 @@ class crudControler extends Controller
             'phone_number' => 'required',
             'password' => 'required|min:6',
         ]);
-      
+
         User::create($request->all());
-       
-        return redirect()->route('crud.index')->with('success','User created successfully.');
+
+        return redirect()->route('crud.index')->with('success', 'User created successfully.');
     }
-  
+
     /**class
      * Display the specified resource.
      *
      * @param  \App\Models\User  $users
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response>with('i', (request()->input('page', 1) - 1) * 5
      */
     public function show(User $users)
     {
-        return view('crud.show',compact('users'));
+        return view('crud.show', compact('users'));
     }
-  
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -73,9 +71,9 @@ class crudControler extends Controller
      */
     public function edit(User $users)
     {
-        return view('crud.edit',compact('users'));
+        return view('crud.edit', compact('users'));
     }
-  
+
     /**
      * Update the specified resource in storage.
      *
@@ -94,10 +92,10 @@ class crudControler extends Controller
             'phone_number' => 'required',
             'password' => 'required|min:6',
         ]);
-      
+
         $users->update($request->all());
-      
-        return redirect()->route('crud.index')->with('success','User updated successfully');
+
+        return redirect()->route('crud.index')->with('success', 'User updated successfully');
     }
     /**
      * Remove the specified resource from storage.
@@ -111,7 +109,7 @@ class crudControler extends Controller
         $users = User::findOrFail($id);
 
         $users->delete();
-       
+
         // return redirect()->route('crud.index')->with('success','User deleted successfully');.
         return redirect('crud.index')->with('success', 'Data is successfully deleted');
     }

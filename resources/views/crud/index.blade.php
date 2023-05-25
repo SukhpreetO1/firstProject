@@ -39,9 +39,9 @@
                 <td>{{ $user->gender }}</td>
                 <td>{{ $user->phone_number }}</td>
                 <td>
-                    <form action="{{ route('crud.destroy',$user->id) }}" method="POST">
+                    <form action="{{ route('crud.destroy', $user->id) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ route('crud.show',$user->id) }}">Show</a>
+                        <a class="btn btn-info" href="{{ route('crud.show', $user->id) }}">Show</a>
 
                         <a class="btn btn-primary" href="">Edit</a>
 
@@ -55,5 +55,7 @@
         @endforeach
     </table>
 
-    {{-- {!! $users->links() !!} --}}
+    <div class="d-flex justify-content-center">
+        {{ $users->links('crud.pagination') }}
+    </div>
 @endsection
