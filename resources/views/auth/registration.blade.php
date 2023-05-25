@@ -75,7 +75,7 @@
                                 <div class="form-group d-flex">
                                     <div class="form-group mb-3 me-4">
                                         <input type="password" placeholder="Password" id="password" class="form-control"
-                                            name="password">
+                                            name="password" autocomplete="current-password" >
                                         @if ($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
@@ -83,7 +83,7 @@
 
                                     <div class="form-group mb-3">
                                         <input type="password" placeholder="Confirm Password" id="password"
-                                            class="form-control" name="password">
+                                            class="form-control" name="password" autocomplete="current-password">
                                         @if ($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif

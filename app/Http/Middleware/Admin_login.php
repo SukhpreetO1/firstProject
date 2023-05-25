@@ -25,6 +25,6 @@ class Admin_login
             return $next($request);
         } 
 
-        return redirect('login')->with('error_authentication', "You don't have admin access.");
+        return response()->view('theme.content');
     }
 }
