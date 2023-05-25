@@ -82,11 +82,12 @@ class crudControler extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  int  $id
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user, $id)
     {
         $request->validate([
             'first_name' => 'required',
@@ -95,11 +96,11 @@ class crudControler extends Controller
             'userName' => 'required',
             'gender' => 'required',
             'phone_number' => 'required',
-            'password' => 'required|min:6',
         ]);
 
+        $user = User::findOrFail($id);
         $user->update($request->all());
-        return redirect('crud.index')->with('success', 'User updated successfully');
+        return redirect('crud')->with('success', 'User updated successfully');
     }
     /**
      * Remove the specified resource from storage.
@@ -110,9 +111,7 @@ class crudControler extends Controller
      */
     public function destroy($id)
     {
-        // $users = User::findOrFail($id);
         $users = User::findOrFail($id);
-
         $users->delete();
 
         // return redirect()->route('crud.index')->with('success','User deleted successfully');.
