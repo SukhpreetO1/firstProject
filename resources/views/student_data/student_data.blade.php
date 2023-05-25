@@ -36,6 +36,7 @@
                         <td>{{ $val->userName }}</td>
                         <td>{{ $val->phone_number }}</td>
                         <td>{{ $val->dob }}</td>
+                        <td>{{ $val->actionBtn}}</td>
                     </tr>
                 @endforeach
             </tbody>
