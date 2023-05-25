@@ -16,7 +16,7 @@ class crudControler extends Controller
     {
         $users = User::orderBy('id', 'asc')->paginate(10);
 
-        return view('crud.index', compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('crud.index', compact('users'));
     }
 
     /**
@@ -52,36 +52,41 @@ class crudControler extends Controller
         return redirect()->route('crud.index')->with('success', 'User created successfully.');
     }
 
-    /**class
+    /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $users
-     * @return \Illuminate\Http\Response>with('i', (request()->input('page', 1) - 1) * 5
+     * @param  int  $id
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
      */
-    public function show(User $users)
+    public function show(User $user, $id)
     {
-        return view('crud.show', compact('users'));
+        $user = User::where('id', $id)->first();
+        return view('crud.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $users
+     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $users)
+    public function edit(User $user, $id)
     {
-        return view('crud.edit', compact('users'));
+        // $user = User::findOrFail($users);
+        $user = User::where('id', $id)->first();
+        return view('crud.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $users
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $users)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'first_name' => 'required',
@@ -93,9 +98,8 @@ class crudControler extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $users->update($request->all());
-
-        return redirect()->route('crud.index')->with('success', 'User updated successfully');
+        $user->update($request->all());
+        return redirect('crud.index')->with('success', 'User updated successfully');
     }
     /**
      * Remove the specified resource from storage.
@@ -104,13 +108,14 @@ class crudControler extends Controller
      * @param  \App\Models\User  $users
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $users)
+    public function destroy($id)
     {
+        // $users = User::findOrFail($id);
         $users = User::findOrFail($id);
 
         $users->delete();
 
         // return redirect()->route('crud.index')->with('success','User deleted successfully');.
-        return redirect('crud.index')->with('success', 'Data is successfully deleted');
+        return redirect('crud')->with('success', 'Data is successfully deleted');
     }
 }

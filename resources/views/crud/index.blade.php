@@ -31,7 +31,7 @@
         </tr>
         @foreach ($users as $user)
             <tr>
-                <td>{{ ++$i }}</td>
+                <td>{{ $user->id }}</td>
                 <td>{{ $user->first_name }}</td>
                 <td>{{ $user->last_name }}</td>
                 <td>{{ $user->email }}</td>
@@ -39,11 +39,11 @@
                 <td>{{ $user->gender }}</td>
                 <td>{{ $user->phone_number }}</td>
                 <td>
-                    <form action="{{ route('crud.destroy', $user->id) }}" method="POST">
+                    <form action="{{ route('crud.destroy',$user->id) }}" method="POST">
 
                         <a class="btn btn-info" href="{{ route('crud.show', $user->id) }}">Show</a>
 
-                        <a class="btn btn-primary" href="">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('crud.edit', $user->id) }}">Edit</a>
 
                         @csrf
                         @method('DELETE')

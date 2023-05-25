@@ -16,44 +16,38 @@
     <div class="row">
         <h3 class="heading mb-4">Details</h3>
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <p>First Name :
-                {{ $users->first_name }}</p>
+            <div class="form-group" >
+                <p>First Name : {{ $user->first_name }} </p>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <p>Last Name :</p>
-                {{ $users->last_name }}
+                <p>Last Name : {{ $user->last_name }} </p>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <p>Email :</p>
-                {{ $users->Email }}
+                <p>Email : {{ $user->email }} </p>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <p>Username :</p>
-                {{ $users->userName }}
+                <p>Username : {{ $user->userName }}</p>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <p>Gender :</p>
-                {{ $users->gender }}
+                <p>Gender : {{ $user->gender }} </p>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <p>Phone Number :</p>
-                {{ $users->phone_number }}
+                <p>Phone Number : {{ $user->phone_number }}</p>
             </div>
         </div>
     </div>
