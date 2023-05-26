@@ -13,7 +13,7 @@
 
     <div class="container mt-5">
         <h2 class="mb-4">Yajra Datatables</h2>
-        <table class="table table-bordered yajra-datatable" id="yajra-datatable">
+        <table class="table table-bordered yajra-datatable" id="yajra_datatable">
             <thead>
                 <tr>
                     <th>No</th>
@@ -26,20 +26,6 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach ($data as $val)
-                    <tr>
-                        <td>{{ $val->id }}</td>
-                        <td>{{ $val->first_name }}</td>
-                        <td>{{ $val->last_name }}</td>
-                        <td>{{ $val->email }}</td>
-                        <td>{{ $val->userName }}</td>
-                        <td>{{ $val->phone_number }}</td>
-                        <td>{{ $val->dob }}</td>
-                        <td>{{ $val->actionBtn}}</td>
-                    </tr>
-                @endforeach
-            </tbody>
         </table>
     </div>
 
@@ -50,5 +36,26 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
+<script type="text/javascript">
+    $(function() {
+
+        var table = $('#yajra_datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('students.list') }}",
+            columns: [
+                { data: 'id', name: 'id' },
+                { data: 'first_name', name: 'first_name' },
+                { data: 'last_name', name: 'last_name' },
+                { data: 'email', name: 'email' },
+                { data: 'userName', name: 'userName' },
+                { data: 'phone_number', name: 'phone_number' },
+                { data: 'dob', name: 'dob' },
+                { data: 'action', name: 'action', orderable: true, searchable: true },
+            ]
+        });
+
+    });
+</script>
 
 </html>

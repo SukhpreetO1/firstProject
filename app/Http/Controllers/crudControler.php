@@ -102,6 +102,7 @@ class crudControler extends Controller
         $user->update($request->all());
         return redirect('crud')->with('success', 'User updated successfully');
     }
+    
     /**
      * Remove the specified resource from storage.
      *

@@ -37,3 +37,4 @@ Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
 Route::get('students', [StudentController::class, 'index']);
 Route::get('students/list', [StudentController::class, 'getStudents'])->name('students.list');
+
