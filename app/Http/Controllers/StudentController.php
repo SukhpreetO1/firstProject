@@ -21,23 +21,32 @@ class StudentController extends Controller
             $data = Student::latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> 
-                    <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return $actionBtn;
+                ->addColumn('action', function ($row) {
+                    $actionBtn = "<a href='#' class='edit btn btn-success btn-sm' data-id='" . $row->id . "' id='edit'>Edit</a>";
+
+                    $deleteButton = "<a href='#' class='delete btn btn-danger btn-sm' data-id='" . $row->id . "' id='delete'>Delete</a>";
+                    return $actionBtn . " " . $deleteButton;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
     }
 
-//     public function destroy($id)
-//     {
-//         $users = User::findOrFail($id);
-//         $users->delete();
+    public function deleteStudent(Request $request)
+    {
 
-//         // return redirect()->route('crud.index')->with('success','User deleted successfully');.
-//         return redirect('crud')->with('success', 'Data is successfully deleted');
-//     }
-// }
+        $id = $request->post('id');
 
+        $studentData = Student::find($id);
+
+        if ($studentData->delete()) {
+            $response['success'] = 1;
+            $response['msg'] = 'Delete successfully';
+        } else {
+            $response['success'] = 0;
+            $response['msg'] = 'Invalid ID.';
+        }
+
+        return response()->json($response);
+    }
+}
