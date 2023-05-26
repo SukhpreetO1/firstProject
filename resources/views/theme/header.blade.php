@@ -3,7 +3,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav" style="margin-left: 69%">
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Home</a>
+            <a href={{url('dashboard')}} class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
@@ -15,7 +15,7 @@
                     Dashboard
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href={{ route('show') }}>Profile</a></li>
                     <li><a class="dropdown-item" href="#">User</a></li>
                     <li><a class="dropdown-item" href={{ route('signout') }}>Logout</a></li>
                 </ul>

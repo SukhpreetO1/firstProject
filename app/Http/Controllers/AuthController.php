@@ -38,6 +38,10 @@ class AuthController extends Controller
         return redirect("login")->with('error_message', 'Invalid credentials');
     }
 
+    
+
+
+
     // to registrate a new user
     public function registration()
     {
@@ -77,7 +81,10 @@ class AuthController extends Controller
         ]);
     }
 
-    // For admin dashboard
+
+
+
+    // to check admin or user dashboard
     public function dashboard()
     {
         if (Auth::check()) {
@@ -85,6 +92,53 @@ class AuthController extends Controller
         }
         return redirect("login");
     }
+
+
+
+
+
+
+
+    // for the profile page
+    public function profile()
+    {
+        return view('theme.show');
+        
+    }
+
+    public function updateProfile(Request $request)
+    {
+     
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'userName' => 'required',
+            'gender' => 'required',
+            'phone_number' => 'required',
+        ]);
+
+        $data = $request->all();
+         
+            $data = [
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'userName' => $data['userName'],
+                'gender' => $data['gender'],
+                'phone_number' => $data['phone_number'],
+            ];
+        $check = User::where('id',Auth::user()->id)->update($data);
+    // dd($data);
+        return redirect("profile")->with('success', 'Profile Update Successfully');
+    }
+
+
+
+
+
+
+
 
     // for logout
     public function signOut()

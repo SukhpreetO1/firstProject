@@ -8,43 +8,149 @@ use App\Models\Student;
 use Yajra\DataTables\Facades\DataTables;
 
 class StudentController extends Controller
+// {
+//     public function index()
+//     {
+//         $data = Student::all();
+//         return view('student_data.student_data', compact('data'));
+//     }
+
+//     public function getStudents(Request $request)
+//     {
+//         if ($request->ajax()) {
+//             $data = Student::latest()->get();
+//             return DataTables::of($data)
+//                 ->addIndexColumn()
+//                 ->addColumn('action', function ($row) {
+//                     $actionBtn = "<a href='#' class='edit btn btn-success btn-sm' data-id='" . $row->id . "' data-bs-toggle='modal' data-bs-target='#updateStudent' id='updateStudent'>Edit</a>";
+//                     $deleteButton = "<a href='#' class='delete btn btn-danger btn-sm' data-id='" . $row->id . "' id='delete'>Delete</a>";
+//                     return $actionBtn . " " . $deleteButton;
+//                 })
+//                 ->rawColumns(['action'])
+//                 ->make(true);
+//         }
+//     }
+
+//     // for deleting the user from the database
+//     public function deleteStudent(Request $request)
+//     {
+//         $id = $request->post('id');
+//         $studentData = Student::find($id);
+
+//         if ($studentData->delete()) {
+//             $response['success'] = 1;
+//             $response['msg'] = 'Delete successfully';
+//         } else {
+//             $response['success'] = 0;
+//             $response['msg'] = 'Invalid ID.';
+//         }
+
+//         return response()->json($response);
+//     }
+
+//     // Update record
+//     public function updateStudent(Request $request)
+//     {
+//         $id = $request->get('id');
+//         $studentData = Student::find($id);
+        
+//         $response = array();
+//         if (!empty($studentData)) {
+//             $updateStudentData['first_name'] = $request->post('first_name');
+//             $updateStudentData['last_name'] = $request->post('last_name');
+//             $updateStudentData['email'] = $request->post('email');
+//             $updateStudentData['userName'] = $request->post('userName');
+//             $updateStudentData['phone_number'] = $request->post('phone_number');
+//             $updateStudentData['dob'] = $request->post('dob');
+
+//             if ($studentData->update($updateStudentData)) {
+//                 $response['success'] = 1;
+//                 $response['msg'] = 'Update successfully';
+//             } else {
+//                 $response['success'] = 0;
+//                 $response['msg'] = 'Record not updated';
+//             }
+//         } else {
+//             $response['success'] = 0;
+//             $response['msg'] = 'Invalid ID.';
+//         }
+
+//         return response()->json($response);
+//     }
+// }
+
+
+
 {
-    public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        $data = Student::all();
-        return view('student_data.student_data', compact('data'));
-    }
-
-    public function getStudents(Request $request)
-    {
+     
         if ($request->ajax()) {
+  
             $data = Student::latest()->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $actionBtn = "<a href='#' class='edit btn btn-success btn-sm' data-id='" . $row->id . "' id='edit'>Edit</a>";
-
-                    $deleteButton = "<a href='#' class='delete btn btn-danger btn-sm' data-id='" . $row->id . "' id='delete'>Delete</a>";
-                    return $actionBtn . " " . $deleteButton;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+  
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+   
+                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
+   
+                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
+    
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
         }
+        
+        return view('productAjax');
     }
-
-    public function deleteStudent(Request $request)
+       
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $id = $request->post('id');
-        $studentData = Student::find($id);
-
-        if ($studentData->delete()) {
-            $response['success'] = 1;
-            $response['msg'] = 'Delete successfully';
-        } else {
-            $response['success'] = 0;
-            $response['msg'] = 'Invalid ID.';
-        }
-
-        return response()->json($response);
+        Student::updateOrCreate([
+                    'id' => $request->id
+                ],
+                [
+                    'name' => $request->name, 
+                    'detail' => $request->detail
+                ]);        
+     
+        return response()->json(['success'=>'Product saved successfully.']);
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Student  $student
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $student = Student::find($id);
+        return response()->json($student);
+    }
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Student  $student
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Student::find($id)->delete();
+      
+        return response()->json(['success'=>'Product deleted successfully.']);
     }
 }

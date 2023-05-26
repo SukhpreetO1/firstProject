@@ -1,51 +1,6 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Datatable</title>
-    {{-- <meta name="token" content="{{ csrf_token() }}"> --}}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
-    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-</head>
-
-<body>
-
-    <div class="container">
-        @yield('content')
-    </div>
-
-
-    <div class="container mt-5">
-        <h2 class="mb-4">Yajra Datatables</h2>
-        <table class="table table-bordered yajra-datatable" id="yajra_datatable">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Phone Number</th>
-                    <th>DOB</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-
-
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
-{{-- <script type="text/javascript" src="{{ asset('asset/js/student_data.js')}}"></script> --}}
-
-<script>
     // to show the data in the form of table
-    $(document).ready(function(){
-    // $(function() {
+
+    $(function() {
         var table = $("#yajra_datatable").DataTable({
             processing: true,
             serverSide: true,
@@ -123,15 +78,16 @@
     // Update record
     $("#yajra_datatable").on("click", "#updateStudent", function() {
         var id = $(this).data("id");
+
         $("#update_id").val(id);
 
         // AJAX request
         $.ajax({
             url: "{{ route('updateStudent') }}",
-            type: "get",
+            type: "post",
             data: {
-                "_token": "{{ csrf_token() }}",
-                "id": id
+                _token: "{{ csrf_token() }}",
+                id: id
             },
             dataType: "json",
             success: function(response) {
@@ -159,7 +115,7 @@
 
     // Save user
     $("#btn_save").click(function() {
-        var id = $("#update_id").val();
+        var id = $("#txt_empid").val();
 
         var first_name = $("#first_name").val().trim();
         var last_name = $("#last_name").val().trim();
@@ -168,7 +124,7 @@
         var phone_number = $("#phone_number").val().trim();
         var dob = $("#dob").val().trim();
 
-        if (first_name != "" && email != "" && userName != "") {
+        if (emp_name != "" && email != "" && city != "") {
             // AJAX request
             $.ajax({
                 url: "{{ route('updateStudent') }}",
@@ -207,6 +163,3 @@
             alert("Please fill all fields.");
         }
     });
-</script>
-
-</html>
