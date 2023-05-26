@@ -116,6 +116,7 @@ class AuthController extends Controller
             'userName' => 'required',
             'gender' => 'required',
             'phone_number' => 'required',
+            'profile_photo' => 'required|image',
         ]);
 
         $data = $request->all();
@@ -127,9 +128,13 @@ class AuthController extends Controller
                 'userName' => $data['userName'],
                 'gender' => $data['gender'],
                 'phone_number' => $data['phone_number'],
+                'profile_photo' => $data['profile_photo'],
             ];
         $check = User::where('id',Auth::user()->id)->update($data);
-    // dd($data);
+
+        $avatarName = time().'.'.$request->avatar->getClientOriginalExtension();
+        $request->avatar->move(public_path('avatars'), $avatarName);
+
         return redirect("profile")->with('success', 'Profile Update Successfully');
     }
 
