@@ -34,9 +34,7 @@ class StudentController extends Controller
 
     public function deleteStudent(Request $request)
     {
-
         $id = $request->post('id');
-
         $studentData = Student::find($id);
 
         if ($studentData->delete()) {

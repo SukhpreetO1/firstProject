@@ -73,7 +73,7 @@
                         alert("Record deleted.");
 
                         // Reload DataTable
-                        yajra_datatable.ajax.reload();
+                        location.replace("/students")
                     } else {
                         alert("Invalid ID.");
                     }
