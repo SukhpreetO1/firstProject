@@ -36,8 +36,13 @@
                                         <span class="text-danger">{{ $errors->first('password') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="d-grid mx-auto">
                                     <button type="submit" class="btn btn-dark btn-block">Login</button>
+                                </div>
+
+                                <div class="d-grid mx-auto" >
+                                    <a href="{{ route('forget.password.get') }}" style="margin-left: 62%;margin-top: 2%;">Forgot Password</a>
                                 </div>
 
                                 <div class="sign-up mt-2 mb-2">
