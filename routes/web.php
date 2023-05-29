@@ -43,6 +43,8 @@ Route::post('update-profile', [AuthController::class, 'updateProfile'])->name('u
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
 
+
+// to get the details of users in admin portal
 Route::resource('users', UserController::class);    
 
 

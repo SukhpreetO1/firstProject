@@ -16,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::select('id', 'email', 'first_name', 'last_name', 'userName')->get();
+        // $users = User::select('id', 'email', 'first_name', 'last_name', 'userName')->get();
+        $users = User::orderBy('id', 'asc')->paginate(5);
 
         return view('view_user.list')->with([
             'users' => $users

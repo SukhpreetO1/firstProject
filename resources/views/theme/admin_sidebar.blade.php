@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style=" position: fixed; ">
     <!-- Brand Logo -->
     <a href="{{url('dashboard')}}" class="brand-link">
         <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="Logo"

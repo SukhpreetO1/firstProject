@@ -41,7 +41,7 @@
                                     <td>{{ $user->last_name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->userName }}</td>
-                                    <td style="display: flex">
+                                    <td style="display: flex; justify-content: space-evenly;">
                                         <a href="{{ route('users.edit', ['user' => $user->id]) }}"
                                             class="btn btn-primary m-2">
                                             <i class="fa fa-pen"></i>
@@ -53,6 +53,10 @@
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>
+                                        <a href="{{ route('users.edit', ['user' => $user->id]) }}"
+                                            class="btn btn-primary m-2">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -61,6 +65,8 @@
                 </div>
             </div>
         </div>
-
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ $users->links('view_user.pagination') }}
     </div>
 @endsection
