@@ -124,15 +124,16 @@
     $("#yajra_datatable").on("click", "#updateStudent", function() {
         var id = $(this).data("id");
         $("#update_id").val(id);
-
         // AJAX request
         $.ajax({
+
             url: "{{ route('updateStudent') }}",
             type: "get",
             data: {
-                "_token": "{{ csrf_token() }}",
-                "id": id
-            },
+                _token : "{{ csrf_token() }}",
+                id: id
+            }, 
+            
             dataType: "json",
             success: function(response) {
                 if (response.success == 1) {

@@ -122,9 +122,6 @@ class AuthController extends Controller
         ]);
 
         $data = $request->all();
-         
-     
-
         $profile_pic = time() . '.' . $request->profile_pic->getClientOriginalExtension();
         $request->profile_pic->move(public_path('profile_pic'), $profile_pic);
         $data = [
@@ -144,6 +141,8 @@ class AuthController extends Controller
 
 
 
+
+    // for the view table   
 
 
 
