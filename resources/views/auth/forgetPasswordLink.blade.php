@@ -28,7 +28,7 @@
                                 <div class="form-group row">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                                     <div class="col-md-6 mb-3">
-                                        <input type="password" id="password" class="form-control" name="password" required
+                                        <input type="password" id="password" class="form-control {{$errors->first('password') ? 'is-invalid' : ''}}" value="{{ old('password') }}" name="password" required
                                             autofocus>
                                         @if ($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>

@@ -66,6 +66,9 @@ class AuthController extends Controller
         return redirect("dashboard")->with('You have signed-in');
     }
 
+
+    
+
     // to create a new user
     public function create(array $data)
     
