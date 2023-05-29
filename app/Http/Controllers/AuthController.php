@@ -108,7 +108,6 @@ class AuthController extends Controller
 
     public function updateProfile(Request $request)
     {
-     
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -116,25 +115,26 @@ class AuthController extends Controller
             'userName' => 'required',
             'gender' => 'required',
             'phone_number' => 'required',
-            'profile_photo' => 'required|image',
+            'profile_pic' => 'required|image',
         ]);
 
         $data = $request->all();
          
-            $data = [
-                'first_name' => $data['first_name'],
-                'last_name' => $data['last_name'],
-                'email' => $data['email'],
-                'userName' => $data['userName'],
-                'gender' => $data['gender'],
-                'phone_number' => $data['phone_number'],
-                'profile_photo' => $data['profile_photo'],
-            ];
+     
+
+        $profile_pic = time() . '.' . $request->profile_pic->getClientOriginalExtension();
+        $request->profile_pic->move(public_path('profile_pic'), $profile_pic);
+        $data = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'userName' => $data['userName'],
+            'gender' => $data['gender'],
+            'phone_number' => $data['phone_number'],
+            'profile_pic' =>   $profile_pic ,
+        ];
+               
         $check = User::where('id',Auth::user()->id)->update($data);
-
-        $avatarName = time().'.'.$request->avatar->getClientOriginalExtension();
-        $request->avatar->move(public_path('avatars'), $avatarName);
-
         return redirect("profile")->with('success', 'Profile Update Successfully');
     }
 

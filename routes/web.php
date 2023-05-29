@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\crudControler;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Middleware\Admin_login;
 use Illuminate\Support\Facades\Route;
@@ -39,8 +40,6 @@ Route::post('custom-registration', [AuthController::class, 'customRegistration']
 Route::get('profile', [AuthController::class, 'profile'])->name('show');
 Route::post('update-profile', [AuthController::class, 'updateProfile'])->name('update-profile');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
-
-
 
 
 
