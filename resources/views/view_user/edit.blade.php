@@ -25,7 +25,7 @@
 
                         {{-- First Name --}}
                         <div class="col-sm-6 mb-3 mb-2">
-                            <span style="color:red;">*</span>Name</label>
+                            <span style="color:red;">*</span>First Name</label>
                             <input type="text" class="form-control form-control-user @error('first_name') is-invalid @enderror"
                                 id="first_name" placeholder="First Name" name="first_name"
                                 value="{{ old('first_name') ? old('first_name') : $user->first_name }}">

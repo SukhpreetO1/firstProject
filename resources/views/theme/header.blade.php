@@ -16,7 +16,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href={{ route('show') }}>Profile</a></li>
-                    <li><a class="dropdown-item" href="#">User</a></li>
+                    <li><a class="dropdown-item" href={{ url('view_user.list')}}>User</a></li>
                     <li><a class="dropdown-item" href={{ route('signout') }}>Logout</a></li>
                 </ul>
             </div>

@@ -83,7 +83,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        return view('view_user.show', compact('user'));
     }
 
     /**

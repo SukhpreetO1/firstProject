@@ -42,6 +42,10 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->userName }}</td>
                                     <td style="display: flex; justify-content: space-evenly;">
+                                        <a href="{{ route('users.show', ['user' => $user->id]) }}"
+                                            class="btn btn-primary m-2">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </a>
                                         <a href="{{ route('users.edit', ['user' => $user->id]) }}"
                                             class="btn btn-primary m-2">
                                             <i class="fa fa-pen"></i>
@@ -53,10 +57,6 @@
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>
-                                        <a href="{{ route('users.edit', ['user' => $user->id]) }}"
-                                            class="btn btn-primary m-2">
-                                            <i class="fa-regular fa-eye"></i>
-                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

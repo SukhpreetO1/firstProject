@@ -7,10 +7,6 @@
                 <div class="col-md-6">
                     <h3 class="card-header text-center">Details</h3>
 
-
-
-
-
                     <div class="card-body">
                         @if ($errors->any())
                             <div class="alert alert-danger">
