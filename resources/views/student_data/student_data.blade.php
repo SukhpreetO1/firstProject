@@ -210,3 +210,17 @@
 </script>
 
 </html>
+
+
+{{-- 
+$('body').on('click', '.editProduct', function () {
+    var product_id = $(this).data('id');
+    $.get("{{ route('products-ajax-crud.index') }}" +'/' + product_id +'/edit', function (data) {
+        $('#modelHeading').html("Edit Product");
+        $('#saveBtn').val("edit-user");
+        $('#ajaxModel').modal('show');
+        $('#product_id').val(data.id);
+        $('#name').val(data.name);
+        $('#detail').val(data.detail);
+    })
+  }); --}}
