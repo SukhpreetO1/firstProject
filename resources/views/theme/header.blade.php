@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    <ul class="navbar-nav" style="margin-left: 69%">
+    <ul class="navbar-nav" style="margin-left: 67%">
         <li class="nav-item d-none d-sm-inline-block">
             <a href={{url('dashboard')}} class="nav-link">Home</a>
         </li>
@@ -16,7 +16,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href={{ route('show') }}>Profile</a></li>
-                    <li><a class="dropdown-item" href={{ auth()->user()->role_id == 1 ? route('users.index') : "#" }}>User</a></li>
+                    <li><a class="dropdown-item" href={{ route('change.password') }}>Change Password</a></li>
                     <li><a class="dropdown-item" href={{ route('signout') }}>Logout</a></li>
                 </ul>
             </div>

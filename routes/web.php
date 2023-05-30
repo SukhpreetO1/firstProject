@@ -5,6 +5,7 @@ use App\Http\Controllers\crudControler;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Middleware\Admin_login;
 use Illuminate\Support\Facades\Route;
 
@@ -40,12 +41,14 @@ Route::get('registration', [AuthController::class, 'registration'])->name('regis
 Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('profile', [AuthController::class, 'profile'])->name('show');
 Route::post('update-profile', [AuthController::class, 'updateProfile'])->name('update-profile');
+Route::get('change-password', [ChangePasswordController::class, 'index']);
+Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
 
 
 // to get the details of users in admin portal
-Route::resource('users', UserController::class);    
+Route::resource('users', UserController::class);
 
 
 
@@ -60,6 +63,6 @@ Route::post('/updateStudent', [StudentController::class, 'updateStudent'])->name
 
 // For forgot password
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');

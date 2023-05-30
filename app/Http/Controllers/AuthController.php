@@ -38,7 +38,7 @@ class AuthController extends Controller
         return redirect("login")->with('error_message', 'Invalid credentials');
     }
 
-    
+
 
 
 
@@ -67,12 +67,12 @@ class AuthController extends Controller
     }
 
 
-    
+
 
     // to create a new user
     public function create(array $data)
-    
-    {   
+
+    {
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -106,7 +106,6 @@ class AuthController extends Controller
     public function profile()
     {
         return view('theme.show');
-        
     }
 
     public function updateProfile(Request $request)
@@ -131,10 +130,10 @@ class AuthController extends Controller
             'userName' => $data['userName'],
             'gender' => $data['gender'],
             'phone_number' => $data['phone_number'],
-            'profile_pic' =>   $profile_pic ,
+            'profile_pic' =>   $profile_pic,
         ];
-               
-        $check = User::where('id',Auth::user()->id)->update($data);
+
+        $check = User::where('id', Auth::user()->id)->update($data);
         return redirect("profile")->with('success', 'Profile Update Successfully');
     }
 
@@ -147,4 +146,10 @@ class AuthController extends Controller
 
         return Redirect('login')->with('logout_message', 'Logout Successfully');
     }
+
+
+    // change password
+
+
 }
+

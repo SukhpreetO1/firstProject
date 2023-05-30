@@ -34,6 +34,22 @@
         </div>
     </nav>
 
+    @if ($errors->any())
+        {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
+    @endif
+    @if (Session::get('error') && Session::get('error') != null)
+        <div style="color:red">{{ Session::get('error') }}</div>
+        @php
+            Session::put('error', null);
+        @endphp
+    @endif
+    @if (Session::get('success') && Session::get('success') != null)
+        <div style="color:green">{{ Session::get('success') }}</div>
+        @php
+            Session::put('success', null);
+        @endphp
+    @endif
+
     <div class="content-area">
         @yield('content')
     </div>

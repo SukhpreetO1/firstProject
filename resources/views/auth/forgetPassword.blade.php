@@ -9,10 +9,20 @@
                         <div class="card-header">Reset Password</div>
                         <div class="card-body">
 
-                            @if (Session::has('message'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ Session::get('message') }}
-                                </div>
+                            @if ($errors->any())
+                                {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
+                            @endif
+                            @if (Session::get('error') && Session::get('error') != null)
+                                <div style="color:red">{{ Session::get('error') }}</div>
+                                @php
+                                    Session::put('error', null);
+                                @endphp
+                            @endif
+                            @if (Session::get('success') && Session::get('success') != null)
+                                <div style="color:green">{{ Session::get('success') }}</div>
+                                @php
+                                    Session::put('success', null);
+                                @endphp
                             @endif
 
                             <form action="{{ route('forget.password.post') }}" method="POST">

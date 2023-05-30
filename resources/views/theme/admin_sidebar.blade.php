@@ -57,8 +57,8 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <p>Page 1</p>
+                            <a href={{ auth()->user()->role_id == 1 ? route('users.index') : "#" }} class="nav-link">
+                                <p>Users Details</p>
                             </a>
                         </li>
                         <li class="nav-item">

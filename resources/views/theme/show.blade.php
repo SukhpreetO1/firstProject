@@ -40,10 +40,7 @@
                                             </span>
                                         @enderror
 
-                                        <input id="profile_pic" type="file"
-                                            class="form-control @error('profile_pic') is-invalid @enderror"
-                                            name="profile_pic" value="{{ old('profile_pic') }}" required
-                                            style=" margin-left: 76%; margin-top: 13%; width: 170%; ">
+                                        <input id="profile_pic" type="file" class="form-control @error('profile_pic') is-invalid @enderror" name="profile_pic" value="{{ old('profile_pic') }}" required style=" margin-left: 76%; margin-top: 13%; width: 170%; ">
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +86,7 @@
 
                             <div class="form-group d-flex">
                                 <div class="form-group mb-3 me-4" name="gender" id="gender">
-                                    <select class="form-select" aria-label="Default select example" style="width:13.75rem"
+                                    <select class="form-select" aria-label="Default select example" style="width:14.5rem"
                                         name="gender" id="gender">
                                         <option selected>Gender</option>
                                         <option value="Male" <?php if (Auth::user()->gender == 'Male') {

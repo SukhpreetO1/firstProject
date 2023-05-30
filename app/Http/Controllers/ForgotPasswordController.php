@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Mail;
 class ForgotPasswordController extends Controller
 {
     /**
-     * Write code on Method
      *
      * @return response()
      */
@@ -26,7 +25,6 @@ class ForgotPasswordController extends Controller
     }
 
     /**
-     * Write code on Method
      *
      * @return response()
      */
@@ -52,7 +50,6 @@ class ForgotPasswordController extends Controller
         return back()->with('message', 'We have e-mailed your password reset link!');
     }
     /**
-     * Write code on Method
      *
      * @return response()
      */
@@ -62,7 +59,6 @@ class ForgotPasswordController extends Controller
     }
 
     /**
-     * Write code on Method
      *
      * @return response()
      */
@@ -88,8 +84,7 @@ class ForgotPasswordController extends Controller
         $user = User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
 
         DB::table('password_resets')->where(['email' => $request->email])->delete();
-        // DB::table('password_resets')->where('email', $user->email)->delete();
-
+        
         return redirect('/login')->with('message', 'Your password has been changed!');
     }
 }
