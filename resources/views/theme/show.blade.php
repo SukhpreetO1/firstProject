@@ -40,10 +40,15 @@
                                             </span>
                                         @enderror
 
-                                        <input id="profile_pic" type="file"
+                                        <input id="profile_pic" type="file" accept="image/*"
                                             class="form-control @error('profile_pic') is-invalid @enderror"
                                             name="profile_pic" value="{{ old('profile_pic') }}" required
                                             style=" margin-left: 76%; margin-top: 13%; width: 170%;">
+                                    </div>
+
+                                    <div class="cross_button">
+                                        <button type="button" class="btn-close" aria-label="Close"
+                                            style="position: absolute; right: 0; top: 6px; block-size: 2%; "></button>
                                     </div>
                                 </div>
                             </div>
@@ -125,3 +130,19 @@
         </div>
     </main>
 @endsection
+
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#preview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#profile_pic").change(function() {
+        readURL(this);
+    });
+</script>
