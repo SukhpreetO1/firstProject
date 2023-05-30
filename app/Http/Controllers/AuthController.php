@@ -30,12 +30,12 @@ class AuthController extends Controller
             if (auth()->user()->role_id == 1) {
                 return redirect('dashboard')->with('success_message', 'Admin Login Successfully');
             } else if (auth()->user()->role_id == 2) {
-                return view('theme.content');
+                return view('theme.content')->with('success_message', 'Login Successfully');
             } else {
                 return ('Invalid credentials');
             }
         }
-        return redirect("login")->with('error_message', 'Invalid credentials');
+        return redirect("login")->with('error', 'Invalid credentials');
     }
 
 
@@ -63,7 +63,7 @@ class AuthController extends Controller
         $data = $request->all();
         $check = User::create($data);
 
-        return redirect("dashboard")->with('You have signed-in');
+        return redirect("login")->with('success', 'Account created successfully');
     }
 
 
@@ -144,7 +144,7 @@ class AuthController extends Controller
         Session::flush();
         Auth::logout();
 
-        return Redirect('login')->with('logout_message', 'Logout Successfully');
+        return Redirect('login')->with('success', 'Logout Successfully');
     }
 
 

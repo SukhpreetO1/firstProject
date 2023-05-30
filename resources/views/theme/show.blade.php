@@ -31,8 +31,8 @@
                             <div class="col-md-8">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <img src="/profile_pic/{{ Auth::user()->profile_pic }}"
-                                            style="width: 95%;margin-left: 117%;;border-radius: 50%;" >
+                                        <img src="/profile_pic/{{ Auth::user()->profile_pic }}" id="preview"
+                                            alt="Profile image" style="width: 95%;margin-left: 117%;;border-radius: 50%;">
 
                                         @error('profile_pic')
                                             <span class="invalid-feedback" role="alert">
@@ -40,7 +40,10 @@
                                             </span>
                                         @enderror
 
-                                        <input id="profile_pic" type="file" class="form-control @error('profile_pic') is-invalid @enderror" name="profile_pic" value="{{ old('profile_pic') }}" required style=" margin-left: 76%; margin-top: 13%; width: 170%; ">
+                                        <input id="profile_pic" type="file"
+                                            class="form-control @error('profile_pic') is-invalid @enderror"
+                                            name="profile_pic" value="{{ old('profile_pic') }}" required
+                                            style=" margin-left: 76%; margin-top: 13%; width: 170%;">
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +51,7 @@
                             <div class="form-group d-flex">
                                 <div class="form-group mb-3 me-4">
                                     <input type="text" placeholder="First Name" id="first_name" class="form-control"
-                                        name="first_name" autofocus value={{ Auth::user()->first_name }}>
+                                        name="first_name" autofocus value={{ Auth::user()->first_name }} autocomplete='off'>
                                     @if ($errors->has('first_name'))
                                         <span class="text-danger">{{ $errors->first('first_name') }}</span>
                                     @endif
@@ -57,7 +60,7 @@
 
                                 <div class="form-group mb-3">
                                     <input type="text" placeholder="Last Name" id="last_name" class="form-control"
-                                        name="last_name" autofocus value={{ Auth::user()->last_name }}>
+                                        name="last_name" autofocus value={{ Auth::user()->last_name }} autocomplete='off'>
                                     @if ($errors->has('last_name'))
                                         <span class="text-danger">{{ $errors->first('last_name') }}</span>
                                     @endif
@@ -68,7 +71,7 @@
                             <div class="form-group d-flex">
                                 <div class="form-group mb-3 me-4">
                                     <input type="email" placeholder="Email" id="email" class="form-control"
-                                        name="email" autofocus value={{ Auth::user()->email }}>
+                                        name="email" autofocus value={{ Auth::user()->email }} autocomplete='off'>
                                     @if ($errors->has('email'))
                                         <span class enctype="multipart/form-data">
                                             @csrf="text-danger">{{ $errors->first('email') }}</span>
@@ -77,7 +80,7 @@
 
                                 <div class="form-group mb-3">
                                     <input type="text" placeholder="Username" id="userName" class="form-control"
-                                        name="userName" autofocus value={{ Auth::user()->userName }}>
+                                        name="userName" autofocus value={{ Auth::user()->userName }} autocomplete='off'>
                                     @if ($errors->has('userName'))
                                         <span class="text-danger">{{ $errors->first('userName') }}</span>
                                     @endif
@@ -119,7 +122,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </main>
 @endsection

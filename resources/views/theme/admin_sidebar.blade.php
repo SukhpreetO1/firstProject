@@ -24,7 +24,7 @@
         <nav class="mt-2">
             <div class="input-group">
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                    aria-label="Search">
+                    aria-label="Search" id="search">
                 <div class="input-group-append">
                     <button class="btn btn-sidebar" type="submit">
                         <i class="fas fa-search"></i>
