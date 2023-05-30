@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
-// use DataTables;
 use Yajra\DataTables\Facades\DataTables;
 
 class StudentController extends Controller
@@ -53,7 +52,7 @@ class StudentController extends Controller
     {
         $id = $request->get('id');
         $studentData = Student::find($id);
-        
+
         $response = array();
         if (!empty($studentData)) {
             $updateStudentData['first_name'] = $request->post('first_name');
@@ -73,6 +72,29 @@ class StudentController extends Controller
         } else {
             $response['success'] = 0;
             $response['msg'] = 'Invalid ID.';
+        }
+
+        return response()->json($response);
+    }
+
+    // Read Employee record by ID
+    public function getStudentData(Request $request)
+    {
+        ## Read POST data 
+        $id = $request->post('id');
+        $studentData = Student::find($id);
+        $response = array();
+        if (!empty($studentData)) {
+            $response['first_name'] = $studentData->student_first_name;
+            $response['last_name'] = $studentData->student_last_name;
+            $response['email'] = $studentData->student_email;
+            $response['userName'] = $studentData->student_userName;
+            $response['phone_number'] = $studentData->student_phone_number;
+            $response['dob'] = $studentData->student_dob;
+
+            $response['success'] = 1;
+        } else {
+            $response['success'] = 0;
         }
 
         return response()->json($response);
