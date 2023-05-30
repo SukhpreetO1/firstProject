@@ -16,7 +16,8 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href={{ route('show') }}>Profile</a></li>
-                    <li><a class="dropdown-item" href={{ route('users.index') }}>User</a></li>
+                    {{-- <li><a class="dropdown-item" href={{ route('users.index') }}>User</a></li> --}}
+                    <li><a class="dropdown-item" href={{ auth()->user()->role_id == 1 ? route('users.index') : "#" }}>User</a></li>
                     <li><a class="dropdown-item" href={{ route('signout') }}>Logout</a></li>
                 </ul>
             </div>

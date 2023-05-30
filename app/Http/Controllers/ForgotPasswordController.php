@@ -77,7 +77,7 @@ class ForgotPasswordController extends Controller
         $updatePassword = DB::table('password_resets')
             ->where([
                 'email' => $request->email,
-                'token' => $request->token->where('is_verified', 0)
+                'token' => $request->token,
             ])
             ->first();
 
@@ -86,9 +86,9 @@ class ForgotPasswordController extends Controller
         }
 
         $user = User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
-        // $user = User::where('token', $token)->where('is_verified', 0)->first();
 
         DB::table('password_resets')->where(['email' => $request->email])->delete();
+        // DB::table('password_resets')->where('email', $user->email)->delete();
 
         return redirect('/login')->with('message', 'Your password has been changed!');
     }
