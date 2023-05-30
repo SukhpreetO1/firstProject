@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{-- <meta name="token" content="{{ csrf_token() }}"> --}}
+    <meta name="token" content="{{ csrf_token() }}">
     <title>Datatable</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -28,36 +28,36 @@
 
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="name">First Name</label>
+                            <label for="first_name">First Name</label>
                             <input type="text" class="form-control" id="first_name" placeholder="Enter first name"
-                                required>
+                                required autocomplete='off'>
                         </div>
 
                         <div class="form-group">
-                            <label for="name">Last Name</label>
+                            <label for="last_name">Last Name</label>
                             <input type="text" class="form-control" id="last_name" placeholder="Enter last name"
-                                required>
+                            autocomplete='off' required>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email">
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" autocomplete='off'>
                         </div>
 
                         <div class="form-group">
-                            <label for="name">Username</label>
-                            <input type="text" class="form-control" id="userName" placeholder="Enter Username"
+                            <label for="userName">Username</label>
+                            <input type="text" class="form-control" id="userName" placeholder="Enter Username" autocomplete='off' 
                                 required>
                         </div>
 
                         <div class="form-group">
-                            <label for="name">Phone Number</label>
+                            <label for="phone_number">Phone Number</label>
                             <input type="number" class="form-control" id="phone_number"
                                 placeholder="Enter Phone number" required maxlength="10">
                         </div>
 
                         <div class="form-group">
-                            <label for="name">Date of birth</label>
+                            <label for="dob">Date of birth</label>
                             <input type="date" class="form-control" id="dob" name="dob" required>
                         </div>
                     </div>
@@ -102,9 +102,10 @@
 {{-- <script type="text/javascript" src="{{ asset('asset/js/student_data.js')}}"></script> --}}
 
 <script type="text/javascript">
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content'); 
+
     // to show the data in the form of table
     $(document).ready(function() {
-        // $(function() {
         var table = $("#yajra_datatable").DataTable({
             processing: true,
             serverSide: true,
@@ -160,9 +161,9 @@
         // AJAX request
         $.ajax({
             url: "{{ route('getStudentData') }}",
-            type: "get",
+            type: "post",
             data: {
-                _token: "{{ csrf_token() }}",
+                _token: CSRF_TOKEN,
                 id: id
             },
 
@@ -193,13 +194,12 @@
     // Save user
     $("#btn_save").click(function() {
         var id = $("#update_id").val();
-        console.log(id);
         var first_name = $("#first_name").val().trim();
         var last_name = $("#last_name").val().trim();
         var email = $("#email").val().trim();
         var userName = $("#userName").val().trim();
-        var phone_number = $("#phone_number").val().trim();
-        var dob = $("#dob").val().trim();
+        var phone_number = $("#phone_number").val();
+        var dob = $("#dob").val();
 
         if (first_name != "" && email != "" && userName != "") {
             // AJAX request
@@ -207,7 +207,7 @@
                 url: "{{ route('updateStudent') }}",
                 type: "post",
                 data: {
-                    _token: "{{ csrf_token() }}",
+                    _token: CSRF_TOKEN,
                     id: id,
                     first_name: first_name,
                     last_name: last_name,

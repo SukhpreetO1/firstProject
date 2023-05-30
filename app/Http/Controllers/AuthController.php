@@ -118,7 +118,7 @@ class AuthController extends Controller
             'userName' => 'required',
             'gender' => 'required',
             'phone_number' => 'required',
-            'profile_pic' => 'required|image',
+            'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $data = $request->all();
@@ -137,14 +137,6 @@ class AuthController extends Controller
         $check = User::where('id',Auth::user()->id)->update($data);
         return redirect("profile")->with('success', 'Profile Update Successfully');
     }
-
-
-
-
-
-    // for the view table   
-
-
 
 
     // for logout

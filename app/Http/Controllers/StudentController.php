@@ -14,6 +14,7 @@ class StudentController extends Controller
         return view('student_data.student_data', compact('data'));
     }
 
+    //Datatables data
     public function getStudents(Request $request)
     {
         if ($request->ajax()) {
@@ -30,20 +31,25 @@ class StudentController extends Controller
         }
     }
 
-    // for deleting the user from the database
-    public function deleteStudent(Request $request)
+    // Read Employee record by ID
+    public function getStudentData(Request $request)
     {
+        ## Read POST data 
         $id = $request->post('id');
         $studentData = Student::find($id);
+        $response = array();
+        if (!empty($studentData)) {
+            $response['first_name'] = $studentData->first_name;
+            $response['last_name'] = $studentData->last_name;
+            $response['email'] = $studentData->email;
+            $response['userName'] = $studentData->userName;
+            $response['phone_number'] = $studentData->phone_number;
+            $response['dob'] = $studentData->dob;
 
-        if ($studentData->delete()) {
             $response['success'] = 1;
-            $response['msg'] = 'Delete successfully';
         } else {
             $response['success'] = 0;
-            $response['msg'] = 'Invalid ID.';
         }
-
         return response()->json($response);
     }
 
@@ -77,24 +83,19 @@ class StudentController extends Controller
         return response()->json($response);
     }
 
-    // Read Employee record by ID
-    public function getStudentData(Request $request)
+
+    // for deleting the user from the database
+    public function deleteStudent(Request $request)
     {
-        ## Read POST data 
         $id = $request->post('id');
         $studentData = Student::find($id);
-        $response = array();
-        if (!empty($studentData)) {
-            $response['first_name'] = $studentData->student_first_name;
-            $response['last_name'] = $studentData->student_last_name;
-            $response['email'] = $studentData->student_email;
-            $response['userName'] = $studentData->student_userName;
-            $response['phone_number'] = $studentData->student_phone_number;
-            $response['dob'] = $studentData->student_dob;
 
+        if ($studentData->delete()) {
             $response['success'] = 1;
+            $response['msg'] = 'Delete successfully';
         } else {
             $response['success'] = 0;
+            $response['msg'] = 'Invalid ID.';
         }
 
         return response()->json($response);

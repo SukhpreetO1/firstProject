@@ -54,7 +54,7 @@ Route::get('students', [StudentController::class, 'index']);
 Route::get('students/list', [StudentController::class, 'getStudents'])->name('students.list');
 Route::post('/getStudentData', [PagesController::class, 'getStudentData'])->name('getStudentData');
 Route::post('/deleteStudent', [StudentController::class, 'deleteStudent'])->name('deleteStudent');
-Route::get('/updateStudent', [StudentController::class, 'updateStudent'])->name('updateStudent');
+Route::post('/updateStudent', [StudentController::class, 'updateStudent'])->name('updateStudent');
 
 
 
