@@ -32,7 +32,7 @@
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <img src="/profile_pic/{{ Auth::user()->profile_pic }}" id="preview"
-                                            alt="Profile image" style="width: 95%;margin-left: 117%;;border-radius: 50%;">
+                                            alt="Profile image" style="max-width: 100%;margin-left: 117%;;border-radius: 50%;">
 
                                         @error('profile_pic')
                                             <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
 
                                     <div class="cross_button">
                                         <button type="button" class="btn-close" aria-label="Close" id="removeImage"
-                                            style="position: absolute; right: 0; top: 6px; block-size: 2%; "></button>
+                                            style="position: absolute; right: -10px; top: 4px; block-size: 2%; "></button>
                                     </div>
                                 </div>
                             </div>
@@ -128,5 +128,29 @@
                 </div>
             </div>
         </div>
-    </main>   
+    </main>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            // Handle file input change event
+            $('#profile_pic').on('change', function(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+
+                // Load image content to the FileReader
+                reader.onload = function(e) {
+                    $('#preview').attr('src', e.target.result);
+                }
+
+                // Read the file content
+                reader.readAsDataURL(file);
+            });
+            $('#removeImage').on('click', function(e) {
+                $('#profile_pic').val(''); // Clear the file input value
+                $('#preview').attr('src', 'https://t3.ftcdn.net/jpg/02/09/37/00/360_F_209370065_JLXhrc5inEmGl52SyvSPeVB23hB6IjrR.jpg'); // Clear the preview image src
+            });
+        });
+    </script>
 @endsection

@@ -38,27 +38,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/fontawesome.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            // Handle file input change event
-            $('#profile_pic').on('change', function(e) {
-                var file = e.target.files[0];
-                var reader = new FileReader();
-
-                // Load image content to the FileReader
-                reader.onload = function(e) {
-                    $('#preview').attr('src', e.target.result);
-                }
-
-                // Read the file content
-                reader.readAsDataURL(file);
-            });
-            $('#removeImage').on('click', function(e) {
-                $('#profile_pic').val(''); // Clear the file input value
-                $('#preview').attr('src', ''); // Clear the preview image src
-            });
-        });
-    </script>
+    @yield('scripts')
 </body>
 
 </html>
