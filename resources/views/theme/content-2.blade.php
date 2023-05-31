@@ -5,7 +5,7 @@
         <div class="alert alert-success">{{ session('success_message') }}</div>
     @endif
 
-    <section class="admin_middlesection">
+    <section class="admin_middlecontent">
         <div>
             This is admin page.
         </div>

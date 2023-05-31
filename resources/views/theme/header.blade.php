@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    <ul class="navbar-nav" style="margin-left: 67%">
+    <ul class="navbar-nav" style="margin-left: 72%">
         <li class="nav-item d-none d-sm-inline-block">
             <a href={{url('dashboard')}} class="nav-link">Home</a>
         </li>
@@ -14,7 +14,7 @@
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Dashboard
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href={{ route('show') }}>Profile</a></li>
                     <li><a class="dropdown-item" href={{ route('change.password') }}>Change Password</a></li>
                     <li><a class="dropdown-item" href={{ route('signout') }}>Logout</a></li>
