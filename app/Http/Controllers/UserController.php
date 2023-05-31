@@ -18,7 +18,6 @@ class UserController extends Controller
     {
         // $users = User::select('id', 'email', 'first_name', 'last_name', 'userName')->get();
         $users = User::orderBy('id', 'asc')->paginate(5);
-
         return view('view_user.list')->with([
             'users' => $users
         ]);
@@ -51,8 +50,6 @@ class UserController extends Controller
 
         try {
             DB::beginTransaction();
-            // Logic For Save User Data
-
             $create_user = User::create([
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
@@ -63,7 +60,6 @@ class UserController extends Controller
 
             if (!$create_user) {
                 DB::rollBack();
-
                 return back()->with('error', 'Something went wrong while saving user data');
             }
 
@@ -96,11 +92,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user =  User::whereId($id)->first();
-
         if (!$user) {
             return back()->with('error', 'User Not Found');
         }
-
         return view('view_user.edit')->with([
             'user' => $user
         ]);
@@ -124,8 +118,6 @@ class UserController extends Controller
 
         try {
             DB::beginTransaction();
-            // Logic For Save User Data
-
             $update_user = User::where('id', $id)->update([
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
@@ -135,10 +127,8 @@ class UserController extends Controller
 
             if (!$update_user) {
                 DB::rollBack();
-
                 return back()->with('error', 'Something went wrong while update user data');
             }
-
             DB::commit();
             return redirect()->route('users.index')->with('success', 'User Updated Successfully.');
         } catch (\Throwable $th) {
@@ -157,9 +147,7 @@ class UserController extends Controller
     {
         try {
             DB::beginTransaction();
-
             $delete_user = User::whereId($id)->delete();
-
             if (!$delete_user) {
                 DB::rollBack();
                 return back()->with('error', 'There is an error while deleting user.');

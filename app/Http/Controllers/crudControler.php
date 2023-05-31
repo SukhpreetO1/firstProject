@@ -15,7 +15,6 @@ class crudControler extends Controller
     public function index()
     {
         $users = User::orderBy('id', 'asc')->paginate(10);
-
         return view('crud.index', compact('users'));
     }
 
@@ -46,9 +45,7 @@ class crudControler extends Controller
             'phone_number' => 'required',
             'password' => 'required|min:6',
         ]);
-
         User::create($request->all());
-
         return redirect()->route('crud.index')->with('success', 'User created successfully.');
     }
 
@@ -74,7 +71,6 @@ class crudControler extends Controller
      */
     public function edit(User $user, $id)
     {
-        // $user = User::findOrFail($users);
         $user = User::where('id', $id)->first();
         return view('crud.edit', compact('user'));
     }
@@ -97,7 +93,6 @@ class crudControler extends Controller
             'gender' => 'required',
             'phone_number' => 'required',
         ]);
-
         $user = User::findOrFail($id);
         $user->update($request->all());
         return redirect('crud')->with('success', 'User updated successfully');
@@ -114,8 +109,6 @@ class crudControler extends Controller
     {
         $users = User::findOrFail($id);
         $users->delete();
-
-        // return redirect()->route('crud.index')->with('success','User deleted successfully');.
         return redirect('crud')->with('success', 'Data is successfully deleted');
     }
 }

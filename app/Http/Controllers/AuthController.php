@@ -28,18 +28,15 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             if (auth()->user()->role_id == 1) {
-                return redirect('dashboard')->with('success_message', 'Admin Login Successfully');
+                return redirect('dashboard')->with('success', 'Admin Login Successfully');
             } else if (auth()->user()->role_id == 2) {
-                return view('theme.content')->with('success_message', 'Login Successfully');
+                return view('theme.content')->with('success', 'Login Successfully');
             } else {
                 return ('Invalid credentials');
             }
         }
         return redirect("login")->with('error', 'Invalid credentials');
     }
-
-
-
 
 
     // to registrate a new user
@@ -59,19 +56,14 @@ class AuthController extends Controller
             'phone_number' => 'required',
             'password' => 'required|min:6',
         ]);
-
         $data = $request->all();
         $check = User::create($data);
-
         return redirect("login")->with('success', 'Account created successfully');
     }
 
 
-
-
     // to create a new user
     public function create(array $data)
-
     {
         return User::create([
             'first_name' => $data['first_name'],
@@ -85,8 +77,6 @@ class AuthController extends Controller
     }
 
 
-
-
     // to check admin or user dashboard
     public function dashboard()
     {
@@ -95,11 +85,6 @@ class AuthController extends Controller
         }
         return redirect("login");
     }
-
-
-
-
-
 
 
     // for the profile page
@@ -132,7 +117,6 @@ class AuthController extends Controller
             'phone_number' => $data['phone_number'],
             'profile_pic' =>   $profile_pic,
         ];
-
         $check = User::where('id', Auth::user()->id)->update($data);
         return redirect("profile")->with('success', 'Profile Update Successfully');
     }
@@ -143,13 +127,7 @@ class AuthController extends Controller
     {
         Session::flush();
         Auth::logout();
-
         return Redirect('login')->with('success', 'Logout Successfully');
     }
-
-
-    // change password
-
-
 }
 

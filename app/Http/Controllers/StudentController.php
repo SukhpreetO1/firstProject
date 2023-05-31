@@ -34,7 +34,6 @@ class StudentController extends Controller
     // Read Employee record by ID
     public function getStudentData(Request $request)
     {
-        ## Read POST data 
         $id = $request->post('id');
         $studentData = Student::find($id);
         $response = array();
@@ -58,7 +57,6 @@ class StudentController extends Controller
     {
         $id = $request->get('id');
         $studentData = Student::find($id);
-
         $response = array();
         if (!empty($studentData)) {
             $updateStudentData['first_name'] = $request->post('first_name');
@@ -79,7 +77,6 @@ class StudentController extends Controller
             $response['success'] = 0;
             $response['msg'] = 'Invalid ID.';
         }
-
         return response()->json($response);
     }
 
@@ -89,7 +86,6 @@ class StudentController extends Controller
     {
         $id = $request->post('id');
         $studentData = Student::find($id);
-
         if ($studentData->delete()) {
             $response['success'] = 1;
             $response['msg'] = 'Delete successfully';
@@ -97,7 +93,6 @@ class StudentController extends Controller
             $response['success'] = 0;
             $response['msg'] = 'Invalid ID.';
         }
-
         return response()->json($response);
     }
 }

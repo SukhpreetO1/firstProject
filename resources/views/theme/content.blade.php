@@ -1,8 +1,8 @@
 @extends('theme.layout')
 
 @section('content')
-    @if (session('success_message'))
-        <div class="alert alert-success">{{ session('success_message') }}</div>
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
     <section class="user_middlecontent">
