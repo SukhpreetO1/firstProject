@@ -47,7 +47,7 @@
                                     </div>
 
                                     <div class="cross_button">
-                                        <button type="button" class="btn-close" aria-label="Close"
+                                        <button type="button" class="btn-close" aria-label="Close" id="removeImage"
                                             style="position: absolute; right: 0; top: 6px; block-size: 2%; "></button>
                                     </div>
                                 </div>
@@ -128,21 +128,5 @@
                 </div>
             </div>
         </div>
-    </main>
+    </main>   
 @endsection
-
-<script type="text/javascript">
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                $('#preview').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#profile_pic").change(function() {
-        readURL(this);
-    });
-</script>
