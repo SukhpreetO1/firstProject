@@ -46,6 +46,8 @@ class UserController extends Controller
             'last_name' => 'required',
             'email' => 'required|email',
             'userName' => 'required',
+            'gender' => 'required',
+            'phone_number' => 'required',
         ]);
 
         try {
@@ -54,8 +56,9 @@ class UserController extends Controller
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
-                'userName' => $request->nuserNameame,
-                'password' => Hash::make('password')
+                'userName' => $request->userName,
+                'gender' => $request->gender,
+                'phone_number' => $request->phone_number,
             ]);
 
             if (!$create_user) {
@@ -114,6 +117,8 @@ class UserController extends Controller
             'last_name' => 'required',
             'email' => 'required|email',
             'userName' => 'required',
+            'gender' => 'required',
+            'phone_number' => 'required',
         ]);
 
         try {
@@ -122,7 +127,9 @@ class UserController extends Controller
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
-                'userName' => $request->nuserNameame,
+                'userName' => $request->userName,
+                'gender' => $request->gender,
+                'phone_number' => $request->phone_number,
             ]);
 
             if (!$update_user) {

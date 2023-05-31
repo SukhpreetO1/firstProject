@@ -6,7 +6,8 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Edit Users</h1>
-            <a href="{{ route('users.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style=" margin-right: 12%; margin-top: 2%; "><i class="fas fa-arrow-left fa-sm text-white-50"></i> Back</a> 
+            <a href="{{ route('users.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                style=" margin-right: 12%; margin-top: 2%; "><i class="fas fa-arrow-left fa-sm text-white-50"></i> Back</a>
         </div>
 
         {{-- Alert Messages --}}
@@ -26,11 +27,12 @@
                         {{-- First Name --}}
                         <div class="col-sm-6 mb-3 mb-2">
                             <span style="color:red;">*</span>First Name</label>
-                            <input type="text" class="form-control form-control-user @error('first_name') is-invalid @enderror"
+                            <input type="text"
+                                class="form-control form-control-user @error('first_name') is-invalid @enderror"
                                 id="first_name" placeholder="First Name" name="first_name"
                                 value="{{ old('first_name') ? old('first_name') : $user->first_name }}">
 
-                            @error('name')
+                            @error('first_name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -40,7 +42,8 @@
                             <span style="color:red;">*</span>Last Name</label>
                             <input type="text"
                                 class="form-control form-control-user @error('last_name') is-invalid @enderror"
-                                id="last_name" placeholder="Last Name" name="last_name" value="{{ old('last_name') ? old('last_name') : $user->last_name }}">
+                                id="last_name" placeholder="Last Name" name="last_name"
+                                value="{{ old('last_name') ? old('last_name') : $user->last_name }}">
 
                             @error('last_name')
                                 <span class="text-danger">{{ $message }}</span>
@@ -65,7 +68,8 @@
                             <span style="color:red;">*</span>Username</label>
                             <input type="text"
                                 class="form-control form-control-user @error('userName') is-invalid @enderror"
-                                id="userName" placeholder="userName" name="userName" value="{{ old('userName') ? old('userName') : $user->userName }}">
+                                id="userName" placeholder="userName" name="userName"
+                                value="{{ old('userName') ? old('userName') : $user->userName }}">
 
                             @error('userName')
                                 <span class="text-danger">{{ $message }}</span>
@@ -78,23 +82,25 @@
                             <select class="form-select" aria-label="Default select example" style="width:22.50rem"
                                 name="gender" id="gender" value="{{ $user->gender }}">
                                 <option selected>Gender</option>
-                                <option value="Male" @if(Auth::user()->gender == 'Male') selected @endif>Male</option>
-                                <option value="Female" @if(Auth::user()->gender == 'Female') selected @endif>Female</option>
+                                <option value="Male" @if (Auth::user()->gender == 'Male') selected @endif>Male</option>
+                                <option value="Female" @if (Auth::user()->gender == 'Female') selected @endif>Female</option>
                             </select>
-                            @if ($errors->has('gender'))
-                                <span class="text-danger">{{ $errors->first('gender') }}</span>
-                            @endif
+                            @error('gender')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         {{-- Phone Number --}}
                         <div class="form-group col-sm-6 mb-3 mb-sm-0">
                             <span style="color:red;">*</span>Phone Number</label>
-                            <input type="text" placeholder="Phone Number" id="phone_number" class="form-control"
-                                name="phone_number" autofocus maxlength="10" value="{{ old('phone_number') ? old('phone_number') : $user->phone_number }}" maxlength="10">
+                            <input type="text" placeholder="Phone Number" id="phone_number" class="form-control @error('userName') is-invalid @enderror"
+                                name="phone_number" autofocus maxlength="10"
+                                value="{{ old('phone_number') ? old('phone_number') : $user->phone_number }}"
+                                maxlength="10">
 
-                            @if ($errors->has('phone_number'))
-                                <span class="text-danger">{{ $errors->first('phone_number') }}</span>
-                            @endif
+                            @error('phone_number')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                     </div>

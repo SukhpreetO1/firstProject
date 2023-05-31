@@ -41,9 +41,12 @@ Route::get('registration', [AuthController::class, 'registration'])->name('regis
 Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('profile', [AuthController::class, 'profile'])->name('show');
 Route::post('update-profile', [AuthController::class, 'updateProfile'])->name('update-profile');
+Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
+
+
+// to change the password
 Route::get('change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
-Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
 
 

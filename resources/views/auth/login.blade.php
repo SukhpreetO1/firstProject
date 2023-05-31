@@ -17,9 +17,9 @@
                             <form method="POST" action="{{ route('login.custom') }}">
                                 @csrf
 
-                                @if ($errors->any())
+                                {{-- @if ($errors->any())
                                     {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
-                                @endif
+                                @endif --}}
                                 @if (Session::get('error') && Session::get('error') != null)
                                     <div style="color:red">{{ Session::get('error') }}</div>
                                     @php
@@ -35,7 +35,7 @@
                                 
                                 <div class="form-group mb-3 mt-2">
                                     <input type="text" placeholder="Email" id="email" class="form-control"
-                                        name="email" autofocus>
+                                        name="email" autofocus value="{{ old('email') }}">
                                     @if ($errors->has('email'))
                                         <span class="text-danger">{{ $errors->first('email') }}</span>
                                     @endif

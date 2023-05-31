@@ -13,9 +13,6 @@
                         <form method="POST" action="{{ route('change.password') }}">
                             @csrf
 
-                            @if ($errors->any())
-                                {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
-                            @endif
                             @if (Session::get('error') && Session::get('error') != null)
                                 <div style="color:red">{{ Session::get('error') }}</div>
                                 @php
@@ -35,6 +32,10 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="current_password"
                                         autocomplete="current-password">
+
+                                        @if ($errors->has('current_password'))
+                                        <span class="text-danger">{{ $errors->first('current_password') }}</span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -44,6 +45,9 @@
                                 <div class="col-md-6">
                                     <input id="new_password" type="password" class="form-control" name="new_password"
                                         autocomplete="current-password">
+                                        @if ($errors->has('new_password'))
+                                        <span class="text-danger">{{ $errors->first('new_password') }}</span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -52,8 +56,11 @@
                                     Password : </label>
 
                                 <div class="col-md-6">
-                                    <input id="new_confirm_password" type="password" class="form-control"
-                                        name="new_confirm_password" autocomplete="current-password">
+                                    <input id="confirm_password" type="password" class="form-control"
+                                        name="confirm_password" autocomplete="current-password">
+                                        @if ($errors->has('confirm_password'))
+                                        <span class="text-danger">{{ $errors->first('confirm_password') }}</span>
+                                    @endif
                                 </div>
                             </div>
 

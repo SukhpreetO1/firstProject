@@ -8,10 +8,6 @@
                     <div class="card">
                         <div class="card-header">Reset Password</div>
                         <div class="card-body">
-
-                            @if ($errors->any())
-                                {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
-                            @endif
                             @if (Session::get('error') && Session::get('error') != null)
                                 <div style="color:red">{{ Session::get('error') }}</div>
                                 @php
@@ -32,7 +28,7 @@
                                         Address</label>
                                     <div class="col-md-6">
                                         <input type="text" id="email_address" class="form-control" name="email"
-                                            required autofocus>
+                                             autofocus>
                                         @if ($errors->has('email'))
                                             <span class="text-danger">{{ $errors->first('email') }}</span>
                                         @endif

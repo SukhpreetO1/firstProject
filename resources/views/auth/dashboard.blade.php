@@ -34,7 +34,7 @@
         </div>
     </nav>
 
-    @if ($errors->any())
+    {{-- @if ($errors->any())
         {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
     @endif
     @if (Session::get('error') && Session::get('error') != null)
@@ -48,7 +48,7 @@
         @php
             Session::put('success', null);
         @endphp
-    @endif
+    @endif --}}
 
     <div class="content-area  mt-2">
         @yield('content')

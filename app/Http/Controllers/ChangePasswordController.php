@@ -39,7 +39,7 @@ class ChangePasswordController extends Controller
         $request->validate([
             'current_password' => ['required', new MatchOldPassword],
             'new_password' => ['required'],
-            'new_confirm_password' => ['same:new_password'],
+            'confirm_password' => 'required|[same:new_password]',
         ]);
         User::find(auth()->user()->id)->update(['password'=> $request->new_password]);
         return back()->with('success', "Password Changed Successfully");

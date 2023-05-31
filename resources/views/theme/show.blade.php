@@ -8,7 +8,7 @@
                     <h3 class="card-header text-center">Details</h3>
 
                     <div class="card-body">
-                        @if ($errors->any())
+                        {{-- @if ($errors->any())
                             <div class="alert alert-danger">
                                 <strong>Whoops!</strong> There were some problems with your input.<br><br>
                                 <ul>
@@ -17,32 +17,33 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
+                        @endif --}}
 
                         <form action="{{ route('update-profile') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-
+                            {{-- 
                             @if (session('success'))
                                 <div class="alert alert-success" role="alert">
                                     {{ session('success') }}
                                 </div>
-                            @endif
+                            @endif --}}
 
                             <div class="col-md-8">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <img src="/profile_pic/{{ Auth::user()->profile_pic }}" id="preview"
-                                            alt="Profile image" style="max-width: 100%;margin-left: 117%;;border-radius: 50%;">
+                                            alt="Profile image"
+                                            style="max-width: 100%;margin-left: 117%;;border-radius: 50%;">
 
-                                        @error('profile_pic')
+                                        {{-- @error('profile_pic')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
-                                        @enderror
+                                        @enderror --}}
 
                                         <input id="profile_pic" type="file" accept="image/*"
                                             class="form-control @error('profile_pic') is-invalid @enderror"
-                                            name="profile_pic" value="{{ old('profile_pic') }}" required
+                                            name="profile_pic" value="{{ old('profile_pic') }}"
                                             style=" margin-left: 76%; margin-top: 13%; width: 170%;">
                                     </div>
 
@@ -50,6 +51,10 @@
                                         <button type="button" class="btn-close" aria-label="Close" id="removeImage"
                                             style="position: absolute; right: -10px; top: 4px; block-size: 2%; "></button>
                                     </div>
+
+                                    @if ($errors->has('profile_pic'))
+                                        <span class="text-danger" style="margin-left: 35%; ">{{ $errors->first('profile_pic') }}</span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -78,8 +83,7 @@
                                     <input type="email" placeholder="Email" id="email" class="form-control"
                                         name="email" autofocus value={{ Auth::user()->email }} autocomplete='off'>
                                     @if ($errors->has('email'))
-                                        <span class enctype="multipart/form-data">
-                                            @csrf="text-danger">{{ $errors->first('email') }}</span>
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
                                     @endif
                                 </div>
 
@@ -149,7 +153,9 @@
             });
             $('#removeImage').on('click', function(e) {
                 $('#profile_pic').val(''); // Clear the file input value
-                $('#preview').attr('src', 'https://t3.ftcdn.net/jpg/02/09/37/00/360_F_209370065_JLXhrc5inEmGl52SyvSPeVB23hB6IjrR.jpg'); // Clear the preview image src
+                $('#preview').attr('src',
+                    'https://t3.ftcdn.net/jpg/02/09/37/00/360_F_209370065_JLXhrc5inEmGl52SyvSPeVB23hB6IjrR.jpg'
+                    ); // Clear the preview image src
             });
         });
     </script>

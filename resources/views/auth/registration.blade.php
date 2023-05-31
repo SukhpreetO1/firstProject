@@ -13,7 +13,7 @@
                                 <div class="form-group d-flex">
                                     <div class="form-group mb-3 me-4">
                                         <input type="text" placeholder="First Name" id="first_name" class="form-control"
-                                            name="first_name" autofocus>
+                                            name="first_name" autofocus value="{{ old('first_name') }}" >
                                         @if ($errors->has('first_name'))
                                             <span class="text-danger">{{ $errors->first('first_name') }}</span>
                                         @endif
@@ -22,7 +22,7 @@
 
                                     <div class="form-group mb-3">
                                         <input type="text" placeholder="Last Name" id="last_name" class="form-control"
-                                            name="last_name" autofocus>
+                                            name="last_name" autofocus value="{{ old('last_name') }}" >
                                         @if ($errors->has('last_name'))
                                             <span class="text-danger">{{ $errors->first('last_name') }}</span>
                                         @endif
@@ -33,7 +33,7 @@
                                 <div class="form-group d-flex">
                                     <div class="form-group mb-3 me-4">
                                         <input type="email" placeholder="Email" id="email" class="form-control"
-                                            name="email" autofocus>
+                                            name="email" autofocus value="{{ old('email') }}" >
                                         @if ($errors->has('email'))
                                             <span class="text-danger">{{ $errors->first('email') }}</span>
                                         @endif
@@ -41,7 +41,7 @@
 
                                     <div class="form-group mb-3">
                                         <input type="text" placeholder="Username" id="userName" class="form-control"
-                                            name="userName" autofocus>
+                                            name="userName" autofocus value="{{ old('userName') }}" >
                                         @if ($errors->has('userName'))
                                             <span class="text-danger">{{ $errors->first('userName') }}</span>
                                         @endif
@@ -53,8 +53,8 @@
                                         <select class="form-select" aria-label="Default select example"
                                             style="width:15.25rem" name="gender" id="gender">
                                             <option selected>Gender</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                            <option  value="{{ old('Male') ? old('Male') : '' }}">Male</option>
+                                            <option  value="{{ old('Female') ? old('Female') : '' }}">Female</option>
                                         </select>
                                         @if ($errors->has('gender'))
                                             <span class="text-danger">{{ $errors->first('gender') }}</span>
