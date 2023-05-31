@@ -33,7 +33,7 @@
                                     @endphp
                                 @endif
                                 
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3 mt-2">
                                     <input type="text" placeholder="Email" id="email" class="form-control"
                                         name="email" autofocus>
                                     @if ($errors->has('email'))

@@ -50,7 +50,7 @@
         @endphp
     @endif
 
-    <div class="content-area">
+    <div class="content-area  mt-2">
         @yield('content')
     </div>
 
