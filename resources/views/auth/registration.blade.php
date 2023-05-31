@@ -53,8 +53,8 @@
                                         <select class="form-select" aria-label="Default select example"
                                             style="width:15.25rem" name="gender" id="gender">
                                             <option selected>Gender</option>
-                                            <option  value="{{ old('Male') ? old('Male') : '' }}">Male</option>
-                                            <option  value="{{ old('Female') ? old('Female') : '' }}">Female</option>
+                                            <option  value="Male">Male</option>
+                                            <option  value="Female">Female</option>
                                         </select>
                                         @if ($errors->has('gender'))
                                             <span class="text-danger">{{ $errors->first('gender') }}</span>
