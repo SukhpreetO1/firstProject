@@ -94,7 +94,7 @@
 
                             <div class="form-group d-flex">
                                 <div class="form-group mb-3 me-4" name="gender" id="gender">
-                                    <select class="form-select" aria-label="Default select example" style="width:14.5rem"
+                                    <select class="form-select" aria-label="Default select example" style="width:13.5rem"
                                         name="gender" id="gender">
                                         <option selected>Gender</option>
                                         <option value="Male" <?php if (Auth::user()->gender == 'Male') {
