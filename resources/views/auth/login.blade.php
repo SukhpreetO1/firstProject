@@ -38,8 +38,7 @@
                                         <p style="margin-bottom: -1rem;">You need to confirm your account. We have sent you
                                             an activation link to activate you account, please check your email. If not
                                             receive, then
-                                            <a
-                                                href={{ route('user.verify') }}>click here</a>
+                                            <a href={{ route('user.verify') }}>click here</a>
                                             to resend the link.
                                         </p>
                                     </div>
