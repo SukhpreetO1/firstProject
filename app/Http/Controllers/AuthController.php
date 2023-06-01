@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Roles;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\UserCode;
 
 class AuthController extends Controller
@@ -133,29 +131,5 @@ class AuthController extends Controller
         Session::flush();
         Auth::logout();
         return Redirect('login')->with('success', 'Logout Successfully');
-    }
-
-
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-
-            auth()->user()->generateCode();
-
-            return redirect()->route('2fa.index');
-        }
-
-        return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\TwoFAController;
 use App\Http\Middleware\Admin_login;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +40,7 @@ Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware('Admin
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
 Route::get('registration', [AuthController::class, 'registration'])->name('register-user');
-Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom')->middleware('CheckAuthentication');
+Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('profile', [AuthController::class, 'profile'])->name('show');
 Route::post('update-profile', [AuthController::class, 'updateProfile'])->name('update-profile');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
@@ -70,8 +71,3 @@ Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPassw
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
-
-
-Route::get('2fa', [TwoFAController::class, 'index'])->name('2fa.index');
-Route::post('2fa', [TwoFAController::class, 'store'])->name('2fa.post');
-Route::get('2fa/reset', [TwoFAController::class, 'resend'])->name('2fa.resend');
