@@ -6,9 +6,6 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\TwoFAController;
-use App\Http\Middleware\Admin_login;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*

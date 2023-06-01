@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Roles;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\UserVerify;
@@ -77,11 +74,7 @@ class AuthController extends Controller
     }
 
 
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+    // for verifying the account before registration
     public function verifyAccount($token)
     {
         $verifyUser = UserVerify::where('token', $token)->first();
