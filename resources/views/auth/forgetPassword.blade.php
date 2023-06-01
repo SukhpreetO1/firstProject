@@ -15,7 +15,7 @@
                                 @endphp
                             @endif
                             @if (Session::get('success') && Session::get('success') != null)
-                                <div style="color:green">{{ Session::get('success') }}</div>
+                                <div style="color:green; margin-left: 34%; margin-bottom: 1%;">{{ Session::get('success') }}</div>
                                 @php
                                     Session::put('success', null);
                                 @endphp

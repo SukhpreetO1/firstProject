@@ -36,7 +36,9 @@ Route::resource('crud', crudControler::class);
 
 
 // 
-Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware('Admin_login');
+Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['Admin_login', 'is_verify_email']); 
+Route::get('user_dashboard', [AuthController::class, 'user_dashboard'])->middleware(['is_verify_email']); 
+
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
 Route::get('registration', [AuthController::class, 'registration'])->name('register-user');
@@ -44,6 +46,10 @@ Route::post('custom-registration', [AuthController::class, 'customRegistration']
 Route::get('profile', [AuthController::class, 'profile'])->name('show');
 Route::post('update-profile', [AuthController::class, 'updateProfile'])->name('update-profile');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
+
+// to verify the
+Route::get('account/verify/{token}', [AuthController::class, 'verifyAccount'])->name('user.verify'); 
+
 
 
 // to change the password

@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Roles;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserCode;
+use Illuminate\Support\Str;
+use App\Models\UserVerify;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -33,7 +35,8 @@ class AuthController extends Controller
             if (auth()->user()->role_id == 1) {
                 return redirect('dashboard')->with('success', 'Admin Login Successfully');
             } else if (auth()->user()->role_id == 2) {
-                return view('theme.content')->with('success', 'Login Successfully');
+                return redirect('user_dashboard')->with('success', 'Login Successfully');
+                // return view('theme.content')->with('success', 'Login Successfully');
             } else {
                 return ('Invalid credentials');
             }
@@ -60,8 +63,40 @@ class AuthController extends Controller
             'password' => 'required|min:6',
         ]);
         $data = $request->all();
-        $check = User::create($data);
-        return redirect("login")->with('success', 'Account created successfully');
+        $createUser = $this->create($data);
+        $token = Str::random(64);
+        UserVerify::create([
+            'user_id' => $createUser->id,
+            'token' => $token
+        ]);
+        Mail::send('email.emailVerificationEmail', ['token' => $token], function ($message) use ($request) {
+            $message->to($request->email);
+            $message->subject('Email Verification Mail');
+        });
+        return redirect("login")->with('success', 'Now you need to verify your account to access the login page.');
+    }
+
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function verifyAccount($token)
+    {
+        $verifyUser = UserVerify::where('token', $token)->first();
+        $message = 'Sorry your email cannot be identified.';
+        if (!is_null($verifyUser)) {
+            $user = $verifyUser->user;
+            if (!$user->is_email_verified) {
+                $verifyUser->user->is_email_verified = 1;
+                $verifyUser->user->save();
+                $message = "Your e-mail is verified. You can now login.";
+            } else {
+                $message = "Your e-mail is already verified. You can now login.";
+            }
+        }
+        return redirect()->route('login')->with('message', $message);
     }
 
 
@@ -75,7 +110,7 @@ class AuthController extends Controller
             'userName' => $data['userName'],
             'gender' => $data['gender'],
             'phone_number' => $data['phone_number'],
-            'password' => Hash::make($data['password'])
+            'password' => $data['password']
         ]);
     }
 
@@ -87,6 +122,11 @@ class AuthController extends Controller
             return view('theme.content-2');
         }
         return redirect("login");
+    }
+
+    public function user_dashboard()
+    {
+        return view('theme.content');
     }
 
 
