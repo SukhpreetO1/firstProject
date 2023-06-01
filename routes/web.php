@@ -34,14 +34,11 @@ Route::resource('crud', crudControler::class);
 
 
 // 
-
 Route::group(['middleware' => 'is_verify_email'], function() {
     Auth::routes();
     Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['Admin_login']); 
     Route::get('user_dashboard', [AuthController::class, 'user_dashboard']); 
 });
-
-
 
 
 Route::get('login', [AuthController::class, 'index'])->name('login');
@@ -52,9 +49,9 @@ Route::get('profile', [AuthController::class, 'profile'])->name('show');
 Route::post('update-profile', [AuthController::class, 'updateProfile'])->name('update-profile');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
+
 // to verify the
 Route::get('account/verify/{token}', [AuthController::class, 'verifyAccount'])->name('user.verify'); 
-
 
 
 // to change the password
@@ -62,10 +59,8 @@ Route::get('change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
 
-
 // to get the details of users in admin portal
 Route::resource('users', UserController::class);
-
 
 
 // Using datatables
@@ -76,9 +71,12 @@ Route::post('/deleteStudent', [StudentController::class, 'deleteStudent'])->name
 Route::post('/updateStudent', [StudentController::class, 'updateStudent'])->name('updateStudent');
 
 
-
 // For forgot password
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
+
+// blog page
+Route::view('/blog/view', 'view');

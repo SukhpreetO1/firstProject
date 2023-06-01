@@ -46,7 +46,7 @@
                                 <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Blog</span> </a>
                             <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                                 <li class="w-100">
-                                    <a href="#" class="nav-link px-0" style="margin-left: 12%;"> <span class="d-none d-sm-inline">View</span></a>
+                                    <a href={{url('blog.view')}} class="nav-link px-0" style="margin-left: 12%;"> <span class="d-none d-sm-inline">View</span></a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link px-0" style="margin-left: 12%;"> <span class="d-none d-sm-inline">Write</span> </a>
