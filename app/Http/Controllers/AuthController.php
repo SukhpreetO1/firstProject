@@ -33,7 +33,6 @@ class AuthController extends Controller
                 return redirect('dashboard')->with('success', 'Admin Login Successfully');
             } else if (auth()->user()->role_id == 2) {
                 return redirect('user_dashboard')->with('success', 'Login Successfully');
-                // return view('theme.content')->with('success', 'Login Successfully');
             } else {
                 return ('Invalid credentials');
             }

@@ -6,6 +6,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChangePasswordController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,8 +34,15 @@ Route::resource('crud', crudControler::class);
 
 
 // 
-Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['Admin_login', 'is_verify_email']); 
-Route::get('user_dashboard', [AuthController::class, 'user_dashboard'])->middleware(['is_verify_email']); 
+
+Route::group(['middleware' => 'is_verify_email'], function() {
+    Auth::routes();
+    Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['Admin_login']); 
+    Route::get('user_dashboard', [AuthController::class, 'user_dashboard']); 
+});
+
+
+
 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom');

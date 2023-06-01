@@ -32,7 +32,19 @@
                                         Session::put('success', null);
                                     @endphp
                                 @endif
-                                
+
+                                @if (Session::has('error_msg'))
+                                    <div class="alert alert-alert" role="alert" style="text-align: justify; color: red; ">
+                                        <p style="margin-bottom: -1rem;">You need to confirm your account. We have sent you
+                                            an activation link to activate you account, please check your email. If not
+                                            receive, then
+                                            <a
+                                                href={{ route('user.verify') }}>click here</a>
+                                            to resend the link.
+                                        </p>
+                                    </div>
+                                @endif
+
                                 <div class="form-group mb-3 mt-2">
                                     <input type="text" placeholder="Email" id="email" class="form-control"
                                         name="email" autofocus value="{{ old('email') }}">
