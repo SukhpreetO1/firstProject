@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class admin_blog extends Model
 {
     use HasFactory;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'title', 'description', 'image', 'user_id'
+        'total_post', 'user_id'
     ];
 
     /**
@@ -22,11 +23,12 @@ class Blog extends Model
      *
      * @var string
      */
-    protected $table = 'posts';
+    protected $table = 'admin_blog';
+
 
     // relationship with users
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\crudControler;
 use App\Http\Controllers\ForgotPasswordController;
@@ -67,6 +68,7 @@ Route::resource('users', UserController::class);
 // for blog page
 Route::resource('blog', PostsController::class);
 Route::post('ckeditor/upload', [PostsController::class, 'upload'])->name('ckeditor.upload');
+Route::resource('admin/posts', AdminBlogController::class);
 
 
 // Using datatables

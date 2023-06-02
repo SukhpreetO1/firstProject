@@ -21,14 +21,14 @@
             <div class="view_body">
                 <h4><strong>Description : </strong></h4>
                 <p class="lead">
-                    <?php  echo $blogs->description ?>
+                    <?php echo $blogs->description; ?>
                 </p>
             </div>
-            
+
             <div class="show_timing">
                 <span>Submitted in {{ date('F j, Y, g:i a', strtotime($blogs->created_at)) }}</span>
             </div>
-            
+
         </div>
     </div>
-@stop
+@endsection

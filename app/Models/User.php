@@ -58,4 +58,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Blog::class);
     }
+
+    public function admin_blog()
+    {
+        return $this->belongsTo(admin_blog::class);
+    }
+
 }

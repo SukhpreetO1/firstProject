@@ -62,8 +62,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <p>Page 2</p>
+                            <a href={{ route('posts.index')}} class="nav-link">
+                                <p>Blogs</p>
                             </a>
                         </li>
                     </ul>
