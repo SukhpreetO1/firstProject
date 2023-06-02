@@ -30,13 +30,29 @@
     </div>
 
     @include('theme.footer')
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/fontawesome.min.js"></script>
+
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+
+        ClassicEditor.create(document.querySelector('#editor'), {
+                ckfinder: {
+                    uploadUrl: '{{ route('ckeditor.upload') . '?_token=' . csrf_token() }}',
+                }
+            })
+            .catch(error => {
+
+            });
+    </script>
 
     @yield('scripts')
 </body>

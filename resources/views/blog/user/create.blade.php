@@ -1,29 +1,43 @@
-@extends('layout.main')
+@extends('theme.layout')
 @section('content')
     <style type="text/css">
 
     </style>
-    @include('layout.adminnav')
     <div class="container">
         <div class="col-md-12">
             <h1>Write Your Post Here</h1>
-            {{ Form::open(['url' => '/admin/posts', 'role' => 'form']) }}
-            <div class="form-group">
-                @if (!empty($errors->first('title')))
-                    <div class="alert alert-danger">{{ $errors->first('title') }}</div>
-                @endif
-                {{ Form::label('title', 'Post Title') }}
-                {{ Form::text('title', $value = null, ['class' => 'form-control', 'placeholder' => 'Your Blog Post Title']) }}
+            <div class="pull-right" style="position: absolute; right: 3%; top: 4%; ">
+                <a class="btn btn-primary" href="{{ route('blog.index') }}"> Back</a>
             </div>
-            <div class="form-group">
-                @if (!empty($errors->first('body')))
-                    <div class="alert alert-danger">{{ $errors->first('body') }}</div>
-                @endif
-                {{ Form::label('body', 'Blog Body/Content') }}
-                {{ Form::textarea('body', $value = null, ['class' => 'form-control', 'rows' => '7']) }}
-            </div>
-            {{ Form::submit('Publish Your Blog Post', ['class' => 'btn btn-default']) }}
-            {{ Form::close() }}
+
+            <form method="POST" action="{{ route('blog.store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="create_blog">
+                    <div class="form-group">
+                        <h3>Title</h3>
+
+                        @error('title')
+                            <span class="text-danger mb-2">{{ $message }}</span>
+                        @enderror
+
+                        <input type="text" class="form-control" name="title" value="{{ old('title') }}"
+                            placeholder="Title">
+                        <input type="hidden" class="form-control" name="user_id" value={{ Auth::user()->id }}>
+                    </div>
+
+
+                    <div class="form-group">
+                        <h3 class="body-heading">Description</h3>
+
+                        @error('description')
+                            <span class="text-danger mb-2">{{ $message }}</span>
+                        @enderror
+
+                        <textarea class="ckeditor form-control" name="description" value="{{ old('description') }}"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            </form>
         </div>
     </div>
-@stop
+@endsection

@@ -8,8 +8,6 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use app\Models\Roles;
 
-
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -49,8 +47,15 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
+    // assiging the roles
     public function roles()
     {
         return $this->belongsTo(Roles::class);
+    }
+
+    // relationship with users
+    public function blog()
+    {
+        return $this->hasMany(Blog::class);
     }
 }
