@@ -66,7 +66,7 @@ Route::resource('users', UserController::class);
 
 
 // for blog page
-Route::resource('blog', PostsController::class)->middleware('blog');
+Route::resource('blog', PostsController::class)->middleware('blog', 'Admin_login');
 Route::post('ckeditor/upload', [PostsController::class, 'upload'])->name('ckeditor.upload');
 Route::resource('admin/posts', AdminBlogController::class);
 
