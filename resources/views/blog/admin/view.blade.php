@@ -25,17 +25,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php $counter = 1; @endphp
+                        @if (Request::get('page') && !empty(Request::get('page')))
+                            @php
+                                $page = Request::get('page') - 1;
+                                $counter = 10 * $page + 1;
+                            @endphp
+                        @endif
+
                         @foreach ($admin_panel as $admin_panel_blog)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $admin_panel_blog->first_name }}</td>
-                                <td>{{ $admin_panel_blog->count }}</td>
+                                <td>{{ $counter }}</td>
+                                <td>{{ $admin_panel_blog->first_name }} {{ $admin_panel_blog->last_name }}</td>
+                                <td>{{ $admin_panel_blog->blog->count() }}</td>
                                 <td style="display: flex; justify-content: space-evenly;">
-                                    <a href="#" class="btn btn-primary m-2">
+                                    <a href="{{ route('posts.show', $admin_panel_blog->id) }}" class="btn btn-primary m-2">
                                         <i class="fa-regular fa-eye"></i>
                                     </a>
                                 </td>
                             </tr>
+                            @php  $counter++; @endphp
                         @endforeach
                     </tbody>
                 </table>

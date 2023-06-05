@@ -87,4 +87,4 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 
 
 // blog page
-Route::view('/blog/view', 'view');
+// Route::view('/blog/view', 'view');
