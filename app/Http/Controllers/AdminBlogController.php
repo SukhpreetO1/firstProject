@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\admin_blog;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class AdminBlogController extends Controller
 {
@@ -23,4 +25,12 @@ class AdminBlogController extends Controller
         $admin_panel = User::with('blog')->where('id', $id)->get();
         return view('blog.admin.show', compact('admin_panel'));
     }
+
+
+    // public function store(Request $request, $id)
+    // {
+    //     // dd($id);
+    //     $admin_panel = admin_blog::with('user')->where('id', $id)->get();
+
+    // }
 }

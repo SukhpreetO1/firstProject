@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style=" position: fixed; ">
     <!-- Brand Logo -->
-    <a href="{{ url('dashboard') }}" class="brand-link">
+    <a href="{{ url('user_dashboard') }}" class="brand-link">
         <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">{{ Auth::user()->first_name }}</span>
@@ -42,17 +42,25 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href={{ route('blog.index') }} class="nav-link">
+                                <p>Blog</p>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item">
                             <a href="#submenu1" data-bs-toggle="collapse" class="nav-link">
-                                <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Blog</span> </a>
+                                <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Blog</span>
+                            </a>
                             <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                                 <li class="w-100">
-                                    <a href="#" class="nav-link px-0" style="margin-left: 12%;"> <span class="d-none d-sm-inline">View</span></a>
+                                    <a href="#" class="nav-link px-0" style="margin-left: 12%;"> <span
+                                            class="d-none d-sm-inline">View</span></a>
                                 </li>
                                 <li>
-                                    <a href={{route('blog.index')}} class="nav-link px-0" style="margin-left: 12%;"> <span class="d-none d-sm-inline">Write</span> </a>
+                                    <a href={{ route('blog.index') }} class="nav-link px-0" style="margin-left: 12%;">
+                                        <span class="d-none d-sm-inline">Write</span> </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
             </ul>

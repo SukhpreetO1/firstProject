@@ -55,7 +55,10 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $blogs = Blog::where('id', $id)->first();
+        $blogs = Blog::where('id', $id)->where('user_id', Auth::user()->id)->first();
+        if (!$blogs) {
+            return redirect()->back()->with('error', 'You are not authorize to access that page');
+        }
         return view('blog.user.show', compact('blogs'));
     }
 
@@ -70,9 +73,9 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $blogs =  Blog::whereId($id)->first();
+        $blogs =  Blog::whereId($id)->where('user_id', Auth::user()->id)->first();
         if (!$blogs) {
-            return back()->with('error', 'Blogs Not Found');
+            return back()->with('error', 'You can not edit that page');
         }
         return view('blog.user.edit', compact('blogs'))->with([
             'blog' => $blogs
@@ -146,12 +149,12 @@ class PostsController extends Controller
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('upload')->getClientOriginalExtension();
             $fileName = $fileName . '_' . time() . '.' . $extension;
-      
+
             $request->file('upload')->move(public_path('media'), $fileName);
-      
+
             $url = asset('media/' . $fileName);
-  
-            return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
+
+            return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
         }
     }
 }

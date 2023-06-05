@@ -14,6 +14,9 @@
 
 
         <div class="col-md-12">
+            @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
             <div class="show_heading">
                 <h2><strong> Title : </strong><span>{{ $blogs->title }}</span> </h2>
             </div>

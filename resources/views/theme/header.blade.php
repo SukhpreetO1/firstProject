@@ -3,7 +3,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav" style="margin-left: 72%">
         <li class="nav-item d-none d-sm-inline-block">
-            <a href={{url('dashboard')}} class="nav-link">Home</a>
+            <a href={{url('user_dashboard')}} class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>

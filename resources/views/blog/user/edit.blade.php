@@ -11,6 +11,9 @@
                 @csrf
                 @method('PUT')
                 <div class="update_blog">
+                    @if (session('error'))
+                        <div class="alert alert-danger">{{ session('error') }}</div>
+                    @endif
                     <div class="form-group">
                         <h3>Title</h3>
 
@@ -30,10 +33,10 @@
                         @error('description')
                             <span class="text-danger mb-2">{{ $message }}</span>
                         @enderror
-                        <textarea class="ckeditor form-control" name="description">{{$blogs->description}}</textarea>
-                        </div>
+                        <textarea class="ckeditor form-control" name="description">{{ $blogs->description }}</textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary mb-3">Update</button>
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Update</button>
             </form>
         </div>
     </div>
