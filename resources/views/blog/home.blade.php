@@ -31,9 +31,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php $counter = 1; @endphp
+                        @if (Request::get('page') && !empty(Request::get('page')))
+                            @php
+                                $page = Request::get('page') - 1;
+                                $counter = 10 * $page + 1;
+                            @endphp
+                        @endif
                         @foreach ($blog as $blogs)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $counter }}</td>
                                 <td>{{ $blogs->title }}</td>
                                 <td style="display: flex; justify-content: space-evenly;">
                                     <a href="{{ route('blog.show', ['blog' => $blogs->id]) }}" class="btn btn-primary m-2">
@@ -52,6 +59,7 @@
                                     </form>
                                 </td>
                             </tr>
+                            @php $counter++; @endphp
                         @endforeach()
                     </tbody>
                 </table>
