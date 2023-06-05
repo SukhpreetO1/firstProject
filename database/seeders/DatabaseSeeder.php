@@ -14,11 +14,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        $gender = $faker->randomElement(['male', 'female']);
-        foreach (range(1, 50) as $index) {
+        foreach (range(1, 5) as $index) {
             DB::table('students')->insert([
-                'first_name' => 'sukhpreet',
-                'last_name' => $faker->name($gender),
+                'first_name' => $faker->name(),
+                'last_name' => $faker->name(),
                 'email' => $faker->email,
                 'userName' => $faker->username,
                 'phone_number' => $faker->phoneNumber,
