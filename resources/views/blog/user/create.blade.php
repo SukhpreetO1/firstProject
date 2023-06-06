@@ -25,6 +25,24 @@
                         <input type="hidden" class="form-control" name="user_id" value={{ Auth::user()->id }}>
                     </div>
 
+                    <div class="category mb-3">
+                        <h3>Category</h3>
+                        <div class="form-group" style="width: 100%; ">
+                            <div class="form-group mb-3 me-4" name="category" id="category">
+                                <select class="form-select" aria-label="Default select example" name="category"
+                                    id="category">
+                                    <option selected value="" disabled>Select Category</option>
+                                    @foreach ($categories as $category)
+                                        <option value='{{ $category->id }}'>{{ $category->name }}></option>
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('category'))
+                                    <span class="text-danger">{{ $errors->first('category') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <h3 class="body-heading">Description</h3>

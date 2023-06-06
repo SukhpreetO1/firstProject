@@ -49,8 +49,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <p>Inactive Page</p>
+                            <a href={{route("categories.index")}} class="nav-link">
+                                <p>Categories</p>
                             </a>
                         </li>
                     </ul>

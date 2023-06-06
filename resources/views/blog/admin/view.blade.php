@@ -13,6 +13,13 @@
             </h1>
         </div>
 
+        {{-- <div class="admin_category">
+            <div class="custom-control custom-switch" style=" text-align: end; margin-right: 6%; ">
+                <input type="checkbox" class="custom-control-input" name="category" id="category" checked>
+                <label class="custom-control-label" for="category">Category</label>
+            </div>
+        </div> --}}
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" style="width: auto; margin-left: 4%;">
@@ -20,6 +27,7 @@
                         <tr>
                             <th style="width: 8%;">Sr No.</th>
                             <th>User Detail</th>
+                            {{-- <th class="category" >Category</th> --}}
                             <th style="width: 30%;">Number of Blogs</th>
                             <th style="width: 10%;">Action</th>
                         </tr>
@@ -37,6 +45,7 @@
                             <tr>
                                 <td>{{ $counter }}</td>
                                 <td>{{ $admin_panel_blog->first_name }} {{ $admin_panel_blog->last_name }}</td>
+                                {{-- <td class="category" ></td> --}}
                                 <td>{{ $admin_panel_blog->blog->count() }}</td>
                                 <td style="display: flex; justify-content: space-evenly;">
                                     <a href="{{ route('posts.show', $admin_panel_blog->id) }}" class="btn btn-primary m-2">

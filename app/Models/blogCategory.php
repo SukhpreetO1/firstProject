@@ -4,35 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Blog extends Model
+class blogCategory extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'title', 'description', 'image', 'user_id'
+        'name', 'status'
     ];
+
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'posts';
+    protected $table = 'blog_category';
 
     // relationship with users
-    public function user()
+    public function blog()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    // relationship with users
-    public function blogCategory()
-    {
-        return $this->belongsTo(blogCategory::class);
+        return $this->hasMany(Blog::class);
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\blogCategory;
 use App\Http\Controllers\crudControler;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\StudentController;
@@ -36,10 +37,10 @@ Route::resource('crud', crudControler::class);
 
 
 // 
-Route::group(['middleware' => 'is_verify_email'], function() {
+Route::group(['middleware' => 'is_verify_email'], function () {
     Auth::routes();
-    Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['Admin_login']); 
-    Route::get('user_dashboard', [AuthController::class, 'user_dashboard']); 
+    Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['Admin_login']);
+    Route::get('user_dashboard', [AuthController::class, 'user_dashboard']);
 });
 
 
@@ -53,7 +54,7 @@ Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
 
 // to verify the
-Route::get('account/verify/{token}', [AuthController::class, 'verifyAccount'])->name('user.verify'); 
+Route::get('account/verify/{token}', [AuthController::class, 'verifyAccount'])->name('user.verify');
 
 
 // to change the password
@@ -66,9 +67,14 @@ Route::resource('users', UserController::class);
 
 
 // for blog page
-Route::resource('blog', PostsController::class)->middleware('blog', 'Admin_login');
+Route::resource('blog', PostsController::class)->middleware('blog', 'Admin_loginBLOG TITLE');
 Route::post('ckeditor/upload', [PostsController::class, 'upload'])->name('ckeditor.upload');
 Route::resource('admin/posts', AdminBlogController::class);
+
+
+// for categories in blog
+Route::resource('categories', blogCategory::class);
+Route::get('changeStatus', [blogCategory::class, 'changeStatus']);
 
 
 // Using datatables
