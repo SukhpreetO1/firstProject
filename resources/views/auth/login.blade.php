@@ -14,7 +14,7 @@
                         @endif
 
                         <div class="card-body">
-                            <form method="POST" action="{{ route('login.custom') }}">
+                            <form method="POST" action="{{ route('login.custom') }}" name="registration" id="registration">
                                 @csrf
 
                                 {{-- @if ($errors->any())

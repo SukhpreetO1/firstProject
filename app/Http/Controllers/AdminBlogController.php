@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\admin_blog;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminBlogController extends Controller
 {
@@ -22,6 +23,8 @@ class AdminBlogController extends Controller
      */
     public function show($id)
     {
+        // $userRole = User::where([['id',Auth::user()->id]])->first();
+        // dd($userRole);
         $admin_panel = User::with('blog')->where('id', $id)->get();
         return view('blog.admin.show', compact('admin_panel'));
     }

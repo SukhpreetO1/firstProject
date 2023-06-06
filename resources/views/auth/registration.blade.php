@@ -8,7 +8,7 @@
                     <div class="card">
                         <h3 class="card-header text-center">Registeration Form</h3>
                         <div class="card-body">
-                            <form action="{{ route('register.custom') }}" method="POST" name="registration">
+                            <form action="{{ route('register.custom') }}" method="POST" name="registration" id="registration">
                                 @csrf
                                 <div class="form-group d-flex">
                                     <div class="form-group mb-3 me-4">
@@ -49,16 +49,17 @@
                                 </div>
 
                                 <div class="form-group d-flex">
-                                    <div class="form-group mb-3 me-4" name="gender" id="gender">
-                                        <select class="form-select" aria-label="Default select example"
-                                            style="width:15.25rem" name="gender" id="gender">
-                                            <option selected>Gender</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                        </select>
-                                        @if ($errors->has('gender'))
-                                            <span class="text-danger">{{ $errors->first('gender') }}</span>
-                                        @endif
+                                    <div class="form-group" style="width: 59%; ">
+                                        <div class="form-group mb-3 me-4" name="gender" id="gender">
+                                            <select class="form-select" aria-label="Default select example" name="gender" id="gender">
+                                                <option selected value="" disabled>Gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                            @if ($errors->has('gender'))
+                                                <span class="text-danger">{{ $errors->first('gender') }}</span>
+                                            @endif
+                                        </div>
                                     </div>
 
                                     <div class="form-group mb-3">
@@ -106,4 +107,5 @@
     </main>
 @endsection
 
-{{-- @yield('scripts') --}}
+{{-- @yield('commonjs') --}}
+{{-- @include('auth.commonjs') --}}

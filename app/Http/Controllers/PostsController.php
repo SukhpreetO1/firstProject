@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\User;
 // use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +56,11 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $blogs = Blog::where('id', $id)->where('user_id', Auth::user()->id)->first();
+        $userRole = User::where([['id',Auth::user()->id]])->first();
+        if($userRole->role_id == 1){
+            return redirect()->back()->with('error','not allowed for this user');
+        }
+        $blogs = Blog::where('id', $id)->where('user_id', $userRole->id)->first();
         if (!$blogs) {
             return redirect()->back()->with('error', 'You are not authorize to access that page');
         }
